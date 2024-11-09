@@ -1,101 +1,59 @@
-import Image from "next/image";
+import About from "@/components/About/About";
+import Banner from "@/components/Banner/Banner";
+import Contacts from "@/components/Contacts/Contacts";
+import Footer from "@/components/Footer/Footer";
+import Address from "@/components/Address/Address";
+import Gallery from "@/components/Gallery/Gallery";
+import Section from "@/components/Section/Section";
+import Services from "@/components/Services/Services";
+import Testimonials from "@/components/Testimonials/Testimonials";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <>
+      <Banner />
+      <Section
+        id="about"
+        meta="Welcome to"
+        name="Sifmax Beauty Parlour"
+        description="Your premier beauty destination in Sinza, Dar es Salaam. We offer expert hair styling, professional makeup, manicures, pedicures, and comprehensive beauty treatments. Our skilled team combines modern techniques with personalized care to enhance your natural beauty."
+      >
+        <About />
+      </Section>
+      <Section
+        id="services"
+        meta="What we do"
+        name="Services"
+        description="Experience excellence at Sifmax Beauty Parlour. We pride ourselves on using quality products and modern techniques to ensure every client leaves feeling beautiful and confident. Visit our salon for the best beauty services in Sinza, Dar es Salaam."
+      >
+        <Services />
+      </Section>
+      <Section
+        id="gallery"
+        meta="Our work"
+        name="Gallery"
+        description="Discover our stunning portfolio of transformative beauty services at Sifmax Beauty Parlour in Sinza. Browse through our collection of professional hair styling, makeup artistry, and nail care results that showcase our expertise and dedication to beauty excellence in Dar es Salaam."
+      >
+        <Gallery />
+      </Section>
+      <Section
+        id="testimonials"
+        meta="What clients say"
+        name="Testimonials"
+        description="Our customers love our professional beauty services, friendly staff, and exceptional results. Join our growing community of happy clients who trust us for all their beauty needs."
+      >
+        <Testimonials />
+      </Section>
+      <Section
+        id="contact"
+        meta="Where to find us"
+        name="Contacts"
+        description="Visit Sifmax Beauty Parlour in Sinza, Dar es Salaam for professional beauty services. Contact us for consultations, pricing information, and special offers. Our friendly team is ready to enhance your beauty experience."
+      >
+        <Contacts />
+      </Section>
+      <Address />
+      <Footer />
+    </>
   );
 }

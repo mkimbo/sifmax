@@ -2,20 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../public/fonts/Montserrat-Variable.ttf");
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  body {
+    line-height: 1;
+  }
+  :root {
+    --background: 40 100% 95%;
+    --foreground: 40 5% 2%;
+    --card: 40 50% 90%;
+    --card-foreground: 40 5% 10%;
+    --popover: 40 100% 95%;
+    --popover-foreground: 40 100% 2%;
+    --primary: 40 86.9% 70%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 40 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 2 30% 85%;
+    --muted-foreground: 40 5% 35%;
+    --accent: 2 30% 80%;
+    --accent-foreground: 40 5% 10%;
+    --destructive: 0 100% 30%;
+    --destructive-foreground: 40 5% 90%;
+    --border: 40 30% 50%;
+    --input: 40 30% 18%;
+    --ring: 40 86.9% 70%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 40 50% 5%;
+    --foreground: 40 5% 90%;
+    --card: 40 50% 2%;
+    --card-foreground: 40 5% 90%;
+    --popover: 40 50% 5%;
+    --popover-foreground: 40 5% 90%;
+    --primary: 40 86.9% 70%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 40 30% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 2 30% 15%;
+    --muted-foreground: 40 5% 60%;
+    --accent: 2 30% 15%;
+    --accent-foreground: 40 5% 90%;
+    --destructive: 0 100% 30%;
+    --destructive-foreground: 40 5% 90%;
+    --border: 40 30% 18%;
+    --input: 40 30% 18%;
+    --ring: 40 86.9% 70%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.montserrat {
+  font-family: "Montserrat";
+}
+.poppins {
+  font-family: "Poppins";
 }
