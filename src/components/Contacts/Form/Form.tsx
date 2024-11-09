@@ -57,7 +57,7 @@ const Form = () => {
       setLoading(false);
       router.push(
         `https://wa.me/254713786782?text= + ${encodeURI(
-          message.message.toString()
+          message.message.toString().replaceAll("&", "and")
         )}`
       );
       // axios.post(BACKEND_DOMAIN + 'message/beautyatluxx', { message: message })

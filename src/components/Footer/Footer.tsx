@@ -30,14 +30,14 @@ const Footer = () => {
             All Rights Reserved
           </p>
           <p>
-            Website created by{" "}
+            Created by{" "}
             <span>
               <a
                 href="https://acidcatdigital.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Acidcat
+                🐱‍👤
               </a>
             </span>
           </p>

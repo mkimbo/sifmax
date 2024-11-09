@@ -6,6 +6,7 @@ import { services, categories, types } from "./availableServices";
 import expand from "../../assets/icons/scroll.png";
 import Image from "next/image";
 import { getUrlWhatsappMessage } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState<number>(1);
@@ -14,7 +15,7 @@ const Services = () => {
   const [booking, setBooking] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [whatsAppMsg, setWhatsAppMsg] = useState("");
-
+  const router = useRouter();
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 720);
@@ -58,11 +59,11 @@ const Services = () => {
     return service ? service : null;
   };
 
-  useEffect(() => {
-    setWhatsAppMsg(
-      getUrlWhatsappMessage(activeServices.map((i) => getService(i)))
-    );
-  }, [activeServices]);
+  // useEffect(() => {
+  //   setWhatsAppMsg(
+  //     getUrlWhatsappMessage(activeServices.map((i) => getService(i)))
+  //   );
+  // }, [activeServices, getUrlWhatsappMessage, setWhatsAppMsg, getService]);
 
   const selectedServices = activeType != null && (
     <div className={classes.Services}>
@@ -98,23 +99,23 @@ const Services = () => {
         </div>
       ))}
 
-      <a
+      <div
         className={[
           classes.Book,
           activeServices.length !== 0 ? classes.ActiveBook : "",
         ].join(" ")}
-        target="_blank"
-        rel="noopener noreferrer"
-        href={"https://wa.me/254713786782?text=" + whatsAppMsg}
-        // onClick={() => {
-        //   console.log(
-        //     getUrlWhatsappMessage(activeServices.map((i) => getService(i))),
-        //     "services"
-        //   );
-        // }}
+        onClick={() => {
+          const msg = getUrlWhatsappMessage(
+            activeServices.map((i) => getService(i))
+          );
+          const url = "https://wa.me/254713786782?text=" + msg;
+          // console.log(msg, "url", url);
+
+          router.push(url);
+        }}
       >
         Book now
-      </a>
+      </div>
     </div>
   );
 

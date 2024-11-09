@@ -12,9 +12,9 @@ export const getUrlWhatsappMessage = (
 ) => {
   const start = "Hi, I would like the following:\n";
   const servicesString = `${services
-    .map((service) => service && `${service.name}, `)
+    .map((service) => service && `${service.name.replaceAll("&", "and")}, `)
     .join("\n")}`;
-  const end = "\n\nwhen are you available?";
+  const end = "\n\nWhen are you available?";
 
   return encodeURI(start + servicesString + end);
 };
