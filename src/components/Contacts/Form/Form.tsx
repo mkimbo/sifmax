@@ -8,7 +8,7 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useRouter } from "next/navigation";
 
 const isEmailAddress = (str: string) => {
-  var pattern =
+  const pattern =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return pattern.test(str);
 };
