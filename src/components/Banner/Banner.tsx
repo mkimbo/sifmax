@@ -10,6 +10,7 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import { useTranslation } from "@/i18n";
 import { ChevronDown, MoveDown } from "lucide-react";
+import { getBlurDataUrl } from "@/lib/utils";
 
 const satisfy = localFont({
   src: "../../app/fonts/Satisfy.ttf",
@@ -58,6 +59,8 @@ const Banner = () => {
               ].join(" ")}
               src={banner_01}
               priority={true}
+              blurDataURL={getBlurDataUrl()}
+              placeholder="blur"
               alt="Sifmax Beauty Parlour"
             />
             <Image
@@ -68,6 +71,8 @@ const Banner = () => {
               ].join(" ")}
               src={banner_02}
               priority={true}
+              blurDataURL={getBlurDataUrl()}
+              placeholder="blur"
               alt="Sifmax Beauty Parlour"
             />
             <Image
@@ -78,6 +83,8 @@ const Banner = () => {
               ].join(" ")}
               priority={true}
               src={banner_03}
+              blurDataURL={getBlurDataUrl()}
+              placeholder="blur"
               alt="Sifmax Beauty Parlour"
             />
           </div>

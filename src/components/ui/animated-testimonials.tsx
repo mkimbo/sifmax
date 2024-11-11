@@ -1,4 +1,5 @@
 "use client";
+import { getBlurDataUrl } from "@/lib/utils";
 import star from "../../assets/icons/star.png";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,6 +91,8 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={500}
                     draggable={false}
+                    blurDataURL={getBlurDataUrl()}
+                    placeholder="blur"
                     className="h-full w-full rounded-3xl object-cover object-center"
                   />
                 </motion.div>

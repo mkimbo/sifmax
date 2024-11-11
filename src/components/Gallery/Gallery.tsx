@@ -14,6 +14,7 @@ import image11 from "../../assets/images/image6.jpeg";
 import Image from "next/image";
 import { Modal, ModalBody, ModalTrigger, useModal } from "../ui/animated-modal";
 import { Fullscreen } from "lucide-react";
+import { getBlurDataUrl } from "@/lib/utils";
 
 const Gallery = () => {
   const images = [
@@ -50,6 +51,8 @@ const Gallery = () => {
               className={classes.Image}
               src={image}
               alt="Sifmax Beauty Parlour"
+              blurDataURL={getBlurDataUrl()}
+              placeholder="blur"
             />
           </div>
         ))}
@@ -59,6 +62,8 @@ const Gallery = () => {
             className="w-full h-full cover bg-no-repeat"
             src={images[expand || 0]}
             alt="Sifmax Beauty Parlour"
+            blurDataURL={getBlurDataUrl()}
+            placeholder="blur"
           />
         </ModalBody>
         {/* { openModal() } */}
