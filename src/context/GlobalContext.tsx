@@ -12,7 +12,7 @@ type TState = {
 };
 
 const initialState: TState = {
-  langCode: "",
+  langCode: "en",
 };
 
 const reducer = (state: TState, action: any) => {
