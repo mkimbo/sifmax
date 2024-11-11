@@ -1,9 +1,9 @@
 "use client";
 
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
-import image from "../../assets/images/image3.jpeg";
-import image2 from "../../assets/images/banner_03.jpeg";
-import image3 from "../../assets/images/bride.jpeg";
+import image from "../../assets/images/review1.jpeg";
+import image2 from "../../assets/images/bride.jpeg";
+import image3 from "../../assets/images/review3.jpeg";
 
 const reviews = [
   {

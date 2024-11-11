@@ -41,7 +41,7 @@
 
         display: block;
 
-        background-image: url("../../assets/icons/sifmax-logo.jpg");
+        background-image: url("../../assets/icons/logo-2.png");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -161,8 +161,9 @@
 
 @media (min-width: 1025px) {
   .Navigation {
+    // top: 32px;
     .Container {
-      width: 75%;
+      width: 80%;
 
       .Links {
         display: flex;
@@ -170,12 +171,12 @@
 
         .Link {
           display: block;
-
+          min-width: 100px;
           font-size: 0.9em;
           font-family: "Poppins", sans-serif;
           text-decoration: none;
           color: stylesheet.$gold1;
-
+          text-align: center;
           &:hover {
             color: white;
           }

@@ -5,10 +5,11 @@ import React, { useState } from "react";
 
 import logo from "../../assets/icons/logo.png";
 import classes from "./Footer.module.scss";
+import { useTranslation } from "@/i18n";
 
 const Footer = () => {
   const [admin, setAdmin] = useState(false);
-
+  const t = useTranslation();
   const switchAdmin = () => {
     document.body.style.overflow = !admin ? "hidden" : "visible";
     setAdmin(!admin);
@@ -22,7 +23,7 @@ const Footer = () => {
   return (
     <div className={classes.Footer}>
       <div className={classes.Wrapper}>
-        {/* <img className={classes.Logo} src={logo} alt='Beauty Salon Ealing Logo' /> */}
+        {/* <img className={classes.Logo} src={logo} alt='Sifmax Beauty Parlour Ealing Logo' /> */}
         <div className={classes.Content}>
           <p>
             Copyright Sifmax Beauty Parlour &copy; {new Date().getFullYear()}{" "}

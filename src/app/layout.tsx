@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Navigation/Navigation";
+import { GlobalProvider } from "@/context/GlobalContext";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -93,8 +95,11 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${satisfy.variable} ${dancingScript.variable} ${montserrat.variable} antialiased bg-black`}
       >
-        <Navigation />
-        {children}
+        <GlobalProvider>
+          <Navigation />
+          {children}
+        </GlobalProvider>
+        <Toaster />
       </body>
     </html>
   );

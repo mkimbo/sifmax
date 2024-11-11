@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import classes from "./Form.module.scss";
 import Spinner from "@/components/Spinner/Spinner";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "@/i18n";
 
 const isEmailAddress = (str: string) => {
   const pattern =
@@ -24,6 +25,7 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string>("");
   const router = useRouter();
+  const t = useTranslation();
   const onSubmit = (event: any) => {
     event.preventDefault();
 
@@ -89,7 +91,7 @@ const Form = () => {
             setMessage({ ...message, name: event.target.value })
           }
           type="text"
-          placeholder="Your name"
+          placeholder={t("contact.form.name")}
         />
       </div>
 
@@ -101,7 +103,7 @@ const Form = () => {
             setMessage({ ...message, email: event.target.value })
           }
           type="email"
-          placeholder="Your email"
+          placeholder={t("contact.form.email")}
         />
       </div>
 
@@ -113,7 +115,7 @@ const Form = () => {
             setMessage({ ...message, phone: event.target.value })
           }
           type="tel"
-          placeholder="Your phone"
+          placeholder={t("contact.form.mobile")}
         />
       </div>
 
@@ -124,14 +126,14 @@ const Form = () => {
           onChange={(event) =>
             setMessage({ ...message, message: event.target.value })
           }
-          placeholder="Your message"
+          placeholder={t("contact.form.message")}
         />
       </div>
 
       {result && <p className={classes.Result}>{result}</p>}
 
       <button className={classes.Send} type="submit" onClick={onSubmit}>
-        Send message
+        {t("contact.form.submit")}
       </button>
     </form>
   );

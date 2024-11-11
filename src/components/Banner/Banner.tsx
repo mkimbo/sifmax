@@ -5,9 +5,11 @@ import classes from "./Banner.module.scss";
 
 import banner_01 from "../../assets/images/image2.jpeg";
 import banner_02 from "../../assets/images/banner_02.jpeg";
-import banner_03 from "../../assets/images/banner_03.jpeg";
+import banner_03 from "../../assets/images/nails3.jpeg";
 import Image from "next/image";
 import localFont from "next/font/local";
+import { useTranslation } from "@/i18n";
+import { ChevronDown, MoveDown } from "lucide-react";
 
 const satisfy = localFont({
   src: "../../app/fonts/Satisfy.ttf",
@@ -23,7 +25,7 @@ const suranna = localFont({
 
 const Banner = () => {
   const [active, setActive] = useState(1);
-
+  const t = useTranslation();
   useEffect(() => {
     const interval = setInterval(() => {
       setActive(active + 1 <= 3 ? active + 1 : 1);
@@ -43,11 +45,8 @@ const Banner = () => {
               <br />& Salon
             </h1>
             <div className={classes.Line} />
-            <p>
-              Visit our serene location at Sinza, Vatican for the best
-              experience and value for money.
-            </p>
-            <a href="#services">Book now</a>
+            <p>{t("banner.description")}</p>
+            <a href="#services">{t("banner.cta")}</a>
           </div>
 
           <div className={classes.Images}>
@@ -58,7 +57,8 @@ const Banner = () => {
                 active === 3 ? classes.Hidden : "",
               ].join(" ")}
               src={banner_01}
-              alt="Beaty Salon"
+              priority={true}
+              alt="Sifmax Beauty Parlour"
             />
             <Image
               className={[
@@ -67,7 +67,8 @@ const Banner = () => {
                 active === 1 ? classes.Hidden : "",
               ].join(" ")}
               src={banner_02}
-              alt="Beaty Salon"
+              priority={true}
+              alt="Sifmax Beauty Parlour"
             />
             <Image
               className={[
@@ -75,8 +76,9 @@ const Banner = () => {
                 active === 3 ? classes.Active : "",
                 active === 2 ? classes.Hidden : "",
               ].join(" ")}
+              priority={true}
               src={banner_03}
-              alt="Beaty Salon"
+              alt="Sifmax Beauty Parlour"
             />
           </div>
         </div>
@@ -103,8 +105,8 @@ const Banner = () => {
         </div>
       </div>
 
-      <a className={classes.Scroll} href="#about">
-        <div className={classes.Arrow} />
+      <a className={`${classes.Scroll} hidden md:flex`} href="#about">
+        <ChevronDown className="animate-bounce" size={32} />
       </a>
     </div>
   );

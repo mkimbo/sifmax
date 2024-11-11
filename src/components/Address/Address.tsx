@@ -1,7 +1,9 @@
 "use client";
-import Logo from "../../assets/icons/sifmax-fav.jpg";
+import { useTranslation } from "@/i18n";
+import Logo from "../../assets/icons/sifmax-fav.png";
 import Image from "next/image";
 const Address = () => {
+  const t = useTranslation();
   return (
     <section className="w-full xl:w-[80%] grid grid-cols-2 md:grid-cols-4 justify-stretch gap-y-8 text-primary/80 montserrat mx-auto py-10">
       <div className="flex flex-col gap-2 items-center justify-center md:items-start">
@@ -13,14 +15,14 @@ const Address = () => {
       </div>
 
       <div className="flex flex-col gap-2 items-center justify-center md:items-start">
-        <h3 className="font-bold text-lg">Open Hours</h3>
+        <h3 className="font-bold text-lg">{t("footer.opening")}</h3>
         <div>
           <a
             rel="noreferrer noopener"
             href="#"
             className="opacity-60 text-white hover:opacity-100"
           >
-            Weekdays: 10:00 - 19:00
+            {t("footer.openingTime")}
           </a>
         </div>
 
@@ -30,7 +32,7 @@ const Address = () => {
             href="#"
             className="opacity-60 text-white hover:opacity-100"
           >
-            Saturday: 10:00 - 18:00
+            {t("footer.ready")}
           </a>
         </div>
 
@@ -40,13 +42,13 @@ const Address = () => {
             href="#"
             className="opacity-60 text-white hover:opacity-100"
           >
-            Sunday: Closed
+            24/7
           </a>
         </div>
       </div>
 
       <div className="flex flex-col gap-2 items-center justify-center md:items-start">
-        <h3 className="font-bold text-lg">Visit Us</h3>
+        <h3 className="font-bold text-lg">{t("footer.visit")}</h3>
         <div>
           <a
             rel="noreferrer noopener"
@@ -90,11 +92,11 @@ const Address = () => {
         </p> */}
       </div>
       <div className="flex flex-col gap-2 items-center justify-center md:items-start">
-        <h3 className="font-bold text-lg ">Social Media</h3>
+        <h3 className="font-bold text-lg ">{t("footer.online")}</h3>
         <div>
           <a
             rel="noreferrer noopener"
-            href="#"
+            href="https://www.instagram.com/sifmax_beauty_parlour/#/"
             className="opacity-60 text-white hover:opacity-100"
           >
             Instagram
@@ -103,7 +105,7 @@ const Address = () => {
         <div>
           <a
             rel="noreferrer noopener"
-            href="#"
+            href="https://www.instagram.com/sifmax_beauty_parlour/#/"
             className="opacity-60 text-white hover:opacity-100"
           >
             Facebook
@@ -112,7 +114,7 @@ const Address = () => {
         <div>
           <a
             rel="noreferrer noopener"
-            href="#"
+            href="https://www.instagram.com/sifmax_beauty_parlour/#/"
             className="opacity-60 text-white hover:opacity-100"
           >
             TikTok

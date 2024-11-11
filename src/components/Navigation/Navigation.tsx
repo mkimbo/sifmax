@@ -1,11 +1,36 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import Logo from "../../assets/icons/logo-small.png";
 import classes from "./Navigation.module.scss";
-import { Menu, X } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Languages,
+  LocateIcon,
+  MapPin,
+  Menu,
+  X,
+} from "lucide-react";
+import { useAppContext, useAppDispatch } from "@/context/GlobalContext";
+import { useTranslation } from "@/i18n";
+import Image from "next/image";
+import { IconBrandTiktok, IconLocation } from "@tabler/icons-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Navigation = () => {
   const [expand, setExpand] = useState(false);
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
+  const t = useTranslation();
+  const { toast } = useToast();
+  // React.useCallback(() => {
+  //   const langCode = localStorage.getItem("sifmax-lang-code");
+  //   if (langCode) {
+  //     dispatch({ type: "SET_LANG_CODE", payload: langCode.toString() });
+  //   } else {
+  //     //dispatch({ type: "SET_LANG_CODE", payload: "en" });
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (!expand) document.body.style.overflow = "visible";
@@ -19,11 +44,21 @@ const Navigation = () => {
 
     setExpand(!expand);
   };
-
   return (
     <nav
       className={[classes.Navigation, expand ? classes.Expand : ""].join(" ")}
     >
+      <Languages
+        onClick={() => {
+          state.langCode === "en"
+            ? dispatch({ type: "SET_LANG_CODE", payload: "sw" })
+            : dispatch({ type: "SET_LANG_CODE", payload: "en" });
+          toast({
+            description: t("language.notification"),
+          });
+        }}
+        className="absolute top-1/2 -translate-y-1/2 right-[90%] lg:right-6 z-[10000] text-primary cursor-pointer"
+      />
       <div className={classes.Container}>
         <div className={classes.Hide} />
 
@@ -34,7 +69,12 @@ const Navigation = () => {
               href="#"
               onClick={() => setExpand(false)}
             >
-              Home
+              {t("nav.discover")}
+            </a>
+          </li>
+          <li>
+            <a className={classes.Link} href="#testimonials">
+              {t("nav.testimonials")}
             </a>
           </li>
           <li>
@@ -43,7 +83,13 @@ const Navigation = () => {
               href="#about"
               onClick={() => setExpand(false)}
             >
-              About
+              {t("nav.about")}
+            </a>
+          </li>
+
+          <li>
+            <a href="#" onClick={() => setExpand(false)}>
+              <Image className={classes.Logo} src={Logo} alt="Sifmax Logo" />
             </a>
           </li>
           <li>
@@ -52,16 +98,7 @@ const Navigation = () => {
               href="#services"
               onClick={() => setExpand(false)}
             >
-              Services
-            </a>
-          </li>
-          <li>
-            <a
-              className={classes.Logo}
-              href="#"
-              onClick={() => setExpand(false)}
-            >
-              {" "}
+              {t("nav.services")}
             </a>
           </li>
           <li>
@@ -70,25 +107,17 @@ const Navigation = () => {
               href="#gallery"
               onClick={() => setExpand(false)}
             >
-              Gallery
+              {t("nav.gallery")}
             </a>
           </li>
-          <li>
-            <a
-              className={classes.Link}
-              href="#testimonials"
-              onClick={() => setExpand(false)}
-            >
-              Testimonials
-            </a>
-          </li>
+
           <li>
             <a
               className={classes.Link}
               href="#contact"
               onClick={() => setExpand(false)}
             >
-              Contact
+              {t("nav.contact")}
             </a>
           </li>
         </ul>

@@ -11,7 +11,7 @@ const summary = () => {
         <img
           className={classes.Logo}
           src={logo}
-          alt="Beauty Salon Ealing Logo"
+          alt="Sifmax Beauty Parlour Ealing Logo"
         />
         <p className={classes.Content}>
           Vestibulum ut mauris euismod, tristique augue sed, consequat metus.

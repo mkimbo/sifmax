@@ -14,41 +14,41 @@ export default function Home() {
       <Banner />
       <Section
         id="about"
-        meta="Welcome to"
+        meta="about.meta"
         name="Sifmax Beauty Parlour"
-        description="Your premier beauty destination in Sinza, Dar es Salaam. We offer expert hair styling, professional makeup, manicures, pedicures, and comprehensive beauty treatments. Our skilled team combines modern techniques with personalized care to enhance your natural beauty."
+        description="about.description"
       >
         <About />
       </Section>
       <Section
         id="services"
-        meta="What we do"
-        name="Services"
-        description="Experience excellence at Sifmax Beauty Parlour. We pride ourselves on using quality products and modern techniques to ensure every client leaves feeling beautiful and confident. Visit our salon for the best beauty services in Sinza, Dar es Salaam."
+        meta="services.meta"
+        name="nav.services"
+        description="services.description"
       >
         <Services />
       </Section>
       <Section
         id="gallery"
-        meta="Our work"
-        name="Gallery"
-        description="Discover our stunning portfolio of transformative beauty services at Sifmax Beauty Parlour in Sinza. Browse through our collection of professional hair styling, makeup artistry, and nail care results that showcase our expertise and dedication to beauty excellence in Dar es Salaam."
+        meta="gallery.meta"
+        name="nav.gallery"
+        description="gallery.description"
       >
         <Gallery />
       </Section>
       <Section
         id="testimonials"
-        meta="What clients say"
-        name="Testimonials"
-        description="Our customers love our professional beauty services, friendly staff, and exceptional results. Join our growing community of happy clients who trust us for all their beauty needs."
+        meta="testimonials.meta"
+        name="nav.testimonials"
+        description="testimonials.description"
       >
         <Testimonials />
       </Section>
       <Section
         id="contact"
-        meta="Where to find us"
-        name="Contacts"
-        description="Visit Sifmax Beauty Parlour in Sinza, Dar es Salaam for professional beauty services. Contact us for consultations, pricing information, and special offers. Our friendly team is ready to enhance your beauty experience."
+        meta="contact.meta"
+        name="nav.contact"
+        description="contact.description"
       >
         <Contacts />
       </Section>

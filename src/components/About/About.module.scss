@@ -94,7 +94,7 @@ $gold1: #f5c870;
 
       .Service {
         min-width: calc(50% - 1px);
-        height: 20vw;
+        // height: 20vw;
 
         flex: 0 1;
 
@@ -114,7 +114,7 @@ $gold1: #f5c870;
     }
 
     .Image {
-      height: 40%;
+      height: 16em;
     }
   }
 }

@@ -70,19 +70,17 @@
           font-size: 0.8em;
           font-family: "Poppins", sans-serif;
 
-          box-shadow: 0 0 12px rgba(0, 0, 0, 0.04);
-
-          color: black;
+          color: stylesheet.$gold1;
 
           text-align: center;
           text-decoration: none;
 
-          background-color: stylesheet.$gold1;
+          border: 1px solid stylesheet.$gold1;
 
           transition: all 0.3s;
 
           &:hover {
-            background-color: stylesheet.$gold3;
+            background-color: stylesheet.$gold1;
             color: white;
           }
         }
@@ -116,7 +114,7 @@
   }
 
   .Scroll {
-    display: flex;
+    display: hidden;
     justify-content: center;
     align-items: center;
 
@@ -127,18 +125,18 @@
 
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.06);
 
-    background-color: stylesheet.$gold1;
-    color: black;
+    // background-color: stylesheet.$gold1;
+    color: stylesheet.$gold1;
     transition: all 0.3s;
 
-    &:hover {
-      background-color: stylesheet.$gold3;
-      color: white;
+    // &:hover {
+    //   background-color: stylesheet.$gold3;
+    //   color: white;
 
-      .Arrow {
-        filter: brightness(0) invert(1);
-      }
-    }
+    //   .Arrow {
+    //     filter: brightness(0) invert(1);
+    //   }
+    // }
 
     .Arrow {
       height: 40%;
@@ -345,6 +343,7 @@
     }
 
     .Scroll {
+      display: flex;
       width: 6.5vh;
       height: 6.5vh;
     }

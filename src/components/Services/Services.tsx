@@ -2,7 +2,11 @@
 
 import React, { useState, useEffect, use } from "react";
 import classes from "./Services.module.scss";
-import { services, categories, types } from "./availableServices";
+import {
+  sifmaxCategories,
+  sifmaxServices,
+  sifmaxTypes,
+} from "./availableServices";
 import expand from "../../assets/icons/scroll.png";
 import Image from "next/image";
 import { getUrlWhatsappMessage } from "@/lib/utils";
@@ -29,7 +33,11 @@ const Services = () => {
   }, []);
 
   const switchCategory = (category: number) => {
-    setActiveType(isMobile ? null : categories[category - 1].types[0]);
+    setActiveType(
+      isMobile && category === 1
+        ? null
+        : sifmaxCategories[category - 1].types[0]
+    );
     setActiveCategory(category);
   };
 
@@ -55,7 +63,7 @@ const Services = () => {
   };
 
   const getService = (id: number) => {
-    const service = services.find((service) => service.id === id);
+    const service = sifmaxServices.find((service) => service.id === id);
     return service ? service : null;
   };
 
@@ -67,7 +75,7 @@ const Services = () => {
 
   const selectedServices = activeType != null && (
     <div className={classes.Services}>
-      {types[activeType - 1].services.map((service) => (
+      {sifmaxTypes[activeType - 1].services.map((service) => (
         <div
           className={[
             classes.Service,
@@ -77,24 +85,25 @@ const Services = () => {
           key={service}
         >
           <div className={classes.Line}>
-            <p className={classes.Name}>{services[service - 1].name}</p>
+            <p className={classes.Name}>{sifmaxServices[service - 1].name}</p>
             <p className={classes.Price}>
-              now £
-              {("" + services[service - 1].price).includes(".")
-                ? services[service - 1].price.toFixed(2)
-                : services[service - 1].price}
+              {/* Tsh.{" "}
+              {("" + sifmaxServices[service - 1].price).includes(".")
+                ? sifmaxServices[service - 1].price.toFixed(2)
+                : sifmaxServices[service - 1].price}
+              k */}
             </p>
           </div>
 
           <div className={classes.Line}>
             <p className={classes.Time}>
-              {services[service - 1].duration >= 60 &&
-                ~~(services[service - 1].duration / 60) + " hrs"}{" "}
-              {services[service - 1].duration % 60 !== 0
-                ? (services[service - 1].duration % 60) + " mins"
+              {sifmaxServices[service - 1].duration >= 60 &&
+                ~~(sifmaxServices[service - 1].duration / 60) + " hrs"}{" "}
+              {sifmaxServices[service - 1].duration % 60 !== 0
+                ? (sifmaxServices[service - 1].duration % 60) + " mins"
                 : ""}
             </p>
-            <p className={classes.Discount}>save up to 20%</p>
+            <p className={classes.Discount}></p>
           </div>
         </div>
       ))}
@@ -122,7 +131,7 @@ const Services = () => {
   return (
     <div className={classes.Services}>
       <div className={classes.Categories}>
-        {categories.map((category) => (
+        {sifmaxCategories.map((category) => (
           <div
             className={[
               classes.Category,
@@ -138,30 +147,34 @@ const Services = () => {
       </div>
 
       <div className={classes.Types}>
-        {categories[activeCategory - 1].types.map((type) => (
-          <React.Fragment key={types[type - 1].name}>
+        {sifmaxCategories[activeCategory - 1].types.map((type) => (
+          <React.Fragment key={sifmaxTypes[type - 1].name}>
             <div
               className={[
                 classes.Type,
-                activeType === types[type - 1].id ? classes.Active : "",
+                activeType === sifmaxTypes[type - 1].id ? classes.Active : "",
               ].join(" ")}
-              onClick={() => switchType(types[type - 1].id)}
+              onClick={() => switchType(sifmaxTypes[type - 1].id)}
             >
-              <p className={classes.Name}>{types[type - 1].name}</p>
-              {types[type - 1].services.some((e) =>
+              <p className={classes.Name}>{sifmaxTypes[type - 1].name}</p>
+              {sifmaxTypes[type - 1].services.some((e) =>
                 activeServices.includes(e)
               ) && <div className={classes.Contain} />}
               <Image
                 className={[
                   classes.Expand,
-                  activeType === types[type - 1].id ? classes.ExpandOpen : "",
+                  activeType === sifmaxTypes[type - 1].id
+                    ? classes.ExpandOpen
+                    : "",
                 ].join(" ")}
                 src={expand}
                 alt="Expand"
               />
             </div>
 
-            {activeType === types[type - 1].id && isMobile && selectedServices}
+            {activeType === sifmaxTypes[type - 1].id &&
+              isMobile &&
+              selectedServices}
           </React.Fragment>
         ))}
       </div>

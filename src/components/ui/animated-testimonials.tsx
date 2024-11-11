@@ -126,7 +126,7 @@ export const AnimatedTestimonials = ({
                 <Image
                   className="w-6 h-6 object-contain bg-no-repeat bg-center"
                   src={star}
-                  alt="Beauty Salon Ealing Review"
+                  alt="Sifmax Beauty Parlour Ealing Review"
                   key={index}
                 />
               ))}
