@@ -2,19 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../assets/icons/logo-small.png";
 import classes from "./Navigation.module.scss";
-import {
-  Facebook,
-  Instagram,
-  Languages,
-  LocateIcon,
-  MapPin,
-  Menu,
-  X,
-} from "lucide-react";
+import { Languages, Menu, X } from "lucide-react";
 import { useAppContext, useAppDispatch } from "@/context/GlobalContext";
 import { useTranslation } from "@/i18n";
 import Image from "next/image";
-import { IconBrandTiktok, IconLocation } from "@tabler/icons-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Navigation = () => {
