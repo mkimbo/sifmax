@@ -4,6 +4,8 @@ import "./globals.css";
 import Navigation from "@/components/Navigation/Navigation";
 import { GlobalProvider } from "@/context/GlobalContext";
 import { Toaster } from "@/components/ui/toaster";
+import { CartProvider } from "@/context/CartContext";
+import Cart from "@/components/Cart/Cart";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -96,8 +98,11 @@ export default function RootLayout({
         className={`${poppins.variable} ${satisfy.variable} ${dancingScript.variable} ${montserrat.variable} antialiased bg-black`}
       >
         <GlobalProvider>
-          <Navigation />
-          {children}
+          <CartProvider>
+            <Navigation />
+            {children}
+            <Cart />
+          </CartProvider>
         </GlobalProvider>
         <Toaster />
       </body>

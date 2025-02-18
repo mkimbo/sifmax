@@ -13,7 +13,7 @@ const Contacts = () => {
     <div className={classes.Contacts}>
       <div className={classes.Map}>
         <Map
-          location={{ lat: -6.821273528983166, lng: 39.278101745532666 }}
+          location={{ lat: -6.882732496020052, lng: 39.28516652478516 }}
           zoom={20}
         />
       </div>

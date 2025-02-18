@@ -32,6 +32,11 @@ const About = () => {
     <div className={classes.About}>
       <div className={classes.Services}>
         <div className={classes.Service}>
+          <Image className={classes.Icon} src={hair} alt="Hair Styling" />
+          <h2 className={classes.Name}>Latest Hair Trends</h2>
+          <p className={classes.Description}>{t("about.hair")}</p>
+        </div>
+        <div className={classes.Service}>
           <Image
             className={classes.Icon}
             src={nails}
@@ -42,21 +47,15 @@ const About = () => {
         </div>
 
         <div className={classes.Service}>
-          <Image className={classes.Icon} src={massage} alt="Waxing" />
-          <h2 className={classes.Name}>Body Care & Treatments</h2>
-          <p className={classes.Description}>{t("about.body")}</p>
-        </div>
-
-        <div className={classes.Service}>
           <Image className={classes.Icon} src={makeup} alt="Make-up" />
-          <h2 className={classes.Name}>Make Up</h2>
+          <h2 className={classes.Name}>Quality Make-Up</h2>
           <p className={classes.Description}>{t("about.makeup")}</p>
         </div>
 
         <div className={classes.Service}>
-          <Image className={classes.Icon} src={hair} alt="Hair Styling" />
-          <h2 className={classes.Name}>Hair Styling</h2>
-          <p className={classes.Description}>{t("about.hair")}</p>
+          <Image className={classes.Icon} src={massage} alt="Waxing" />
+          <h2 className={classes.Name}>Body Care & Treatments</h2>
+          <p className={classes.Description}>{t("about.body")}</p>
         </div>
       </div>
 

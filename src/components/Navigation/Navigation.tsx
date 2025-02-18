@@ -7,13 +7,19 @@ import { useAppContext, useAppDispatch } from "@/context/GlobalContext";
 import { useTranslation } from "@/i18n";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/context/CartContext";
+import CartIcon from "../CartIcon/CartIcon";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 const Navigation = () => {
   const [expand, setExpand] = useState(false);
+  const { cart, toggleCart } = useCart();
   const dispatch = useAppDispatch();
   const state = useAppContext();
   const t = useTranslation();
   const { toast } = useToast();
+
+  const isMobile = useMediaQuery("(max-width: 1024px)");
   // React.useCallback(() => {
   //   const langCode = localStorage.getItem("sifmax-lang-code");
   //   if (langCode) {
@@ -39,17 +45,27 @@ const Navigation = () => {
     <nav
       className={[classes.Navigation, expand ? classes.Expand : ""].join(" ")}
     >
-      <Languages
-        onClick={() => {
-          state.langCode === "en"
-            ? dispatch({ type: "SET_LANG_CODE", payload: "sw" })
-            : dispatch({ type: "SET_LANG_CODE", payload: "en" });
-          toast({
-            description: t("language.notification"),
-          });
-        }}
-        className="absolute top-1/2 -translate-y-1/2 right-[90%] lg:right-6 z-[10000] text-primary cursor-pointer"
-      />
+      <div className="absolute top-1/2 -translate-y-1/2 hidden lg:flex lg:left-6 z-[10000]">
+        <CartIcon />
+      </div>
+      <div className="absolute top-1/2 -translate-y-1/2 right-[90%] lg:right-6 z-[10000]">
+        {cart.length > 0 && isMobile ? (
+          <CartIcon />
+        ) : (
+          <Languages
+            onClick={() => {
+              state.langCode === "en"
+                ? dispatch({ type: "SET_LANG_CODE", payload: "sw" })
+                : dispatch({ type: "SET_LANG_CODE", payload: "en" });
+              toast({
+                description: t("language.notification"),
+              });
+            }}
+            className=" text-primary cursor-pointer"
+          />
+        )}
+      </div>
+
       <div className={classes.Container}>
         <div className={classes.Hide} />
 

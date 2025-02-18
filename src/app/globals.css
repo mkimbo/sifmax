@@ -70,9 +70,54 @@ body {
   }
 }
 
+.dancing-script {
+  font-family: "dancingScript", cursive;
+}
 .montserrat {
   font-family: "Montserrat";
 }
 .poppins {
   font-family: "Poppins";
+}
+
+.minus-header {
+  margin-top: 4em;
+}
+
+.gradient-bg {
+  background: linear-gradient(to top, #f5c870, transparent);
+}
+
+.service-card-size {
+  max-width: 175px;
+  max-height: 175px;
+  min-width: calc(30vw - 4px);
+  min-height: calc(30vw - 4px);
+}
+
+@media (min-width: 720px) {
+  .service-card-size {
+    min-width: 14vw;
+    min-height: 14vw;
+  }
+  .service-list-height {
+    max-height: 500px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .service-card-size {
+    min-width: 11.5vw;
+    min-height: 11.5vw;
+  }
+}
+
+.service-list-height {
+  max-height: 280px;
+}
+
+@media (min-width: 390px) {
+  .service-list-height {
+    max-height: 400px;
+  }
 }

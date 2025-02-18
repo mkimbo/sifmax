@@ -5,8 +5,8 @@ import Footer from "@/components/Footer/Footer";
 import Address from "@/components/Address/Address";
 import Gallery from "@/components/Gallery/Gallery";
 import Section from "@/components/Section/Section";
-import Services from "@/components/Services/Services";
 import Testimonials from "@/components/Testimonials/Testimonials";
+import { ExpandableCardDemo } from "@/components/ExpandableCards/ExpandableCards";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
         name="nav.services"
         description="services.description"
       >
-        <Services />
+        <ExpandableCardDemo />
       </Section>
       <Section
         id="gallery"
