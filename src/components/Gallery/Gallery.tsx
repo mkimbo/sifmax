@@ -7,9 +7,10 @@ import image1 from "../../assets/images/nails1.jpeg";
 import image4 from "../../assets/images/nails3.jpeg";
 import image5 from "../../assets/images/hair2.jpeg";
 import image8 from "../../assets/images/hair1.jpeg";
-import image9 from "../../assets/images/image4.jpeg";
-import image10 from "../../assets/images/image5.jpeg";
-import image11 from "../../assets/images/image6.jpeg";
+import image9 from "../../assets/images/sifmax1.png";
+import image10 from "../../assets/images/sifmax2.png";
+import image11 from "../../assets/images/sifmax4.png";
+import image2 from "../../assets/images/sifmax5.png";
 
 import Image from "next/image";
 import { Modal, ModalBody, ModalTrigger, useModal } from "../ui/animated-modal";
@@ -31,7 +32,7 @@ const Gallery = () => {
     image10,
     image11,
     // image12,
-    image9,
+    image2,
   ];
 
   const [expand, setExpand] = useState<number | null>(null);

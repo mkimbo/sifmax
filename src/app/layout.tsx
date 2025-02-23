@@ -35,10 +35,10 @@ const poppins = localFont({
   variable: "--font-poppins",
   weight: "400",
 });
-const siteURL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sifmax.vercel.app";
-const title = "Sifmax Beauty Parlour";
+const siteURL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sifmax.com";
+const title = "Sifmax Beauty Parlour | Hair, Makeup & Spa in Dar es Salaam";
 const description =
-  "Your premier beauty destination in Sinza, Dar es Salaam. We combine modern techniques with personalized care to enhance your natural beauty.";
+  "Visit Sifmax Beauty Parlour in Sinza, Dar es Salaam for professional hair styling, makeup, body treatments, and more. Book now for a premium salon experience!";
 export const metadata: Metadata = {
   metadataBase: new URL(siteURL),
   title: title,

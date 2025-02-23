@@ -7,8 +7,8 @@ export default {
   "nav.contact": "Contacts",
 
   "banner.description":
-    "Visit our serene establishment at Sinza, Dar es Salaam for the best experience and value for money.",
-  "banner.cta": "Book Now",
+    "Experience luxury and premium services tailored just for you at our serene location in Sinza, Dar es Salaam!",
+  "banner.cta": "Book Your Glam Session",
 
   "about.meta": "Welcome to",
   "about.description":
@@ -26,7 +26,7 @@ export default {
 
   "services.meta": "The best in town",
   "services.description":
-    "Experience excellence at Sifmax Beauty Parlour. We pride ourselves on using quality products and modern techniques to ensure every client leaves feeling beautiful and confident. Visit our salon for the best beauty services in Sinza, Dar es Salaam.",
+    "Explore our complete list of services below. We pride ourselves on using quality products and modern techniques to ensure every client leaves feeling beautiful and confident. Visit our salon for the best beauty services in Sinza, Dar es Salaam.",
 
   "gallery.meta": "See for yourself",
   "gallery.description":

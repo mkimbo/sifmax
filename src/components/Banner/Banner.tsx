@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 
 import classes from "./Banner.module.scss";
 
-import banner_01 from "../../assets/images/image2.jpeg";
-import banner_02 from "../../assets/images/banner_02.jpeg";
-import banner_03 from "../../assets/images/nails3.jpeg";
+import banner_01 from "../../assets/images/sifmax7.png";
+import banner_02 from "../../assets/images/sifmax8.png";
+import banner_03 from "../../assets/images/sifmax3.png";
 import Image from "next/image";
 import localFont from "next/font/local";
 import { useTranslation } from "@/i18n";
@@ -40,10 +40,11 @@ const Banner = () => {
       <div className={classes.Main}>
         <div className={classes.Holder}>
           <div className={classes.Text}>
-            <h2 className={`${satisfy.variable}`}>the best</h2>
+            <h2 className={`${satisfy.variable}`}>the finest</h2>
             <h1 className={`${suranna.variable}`}>
-              Beauty Parlour
-              <br />& Salon
+              Hair & Beauty
+              <br />
+              Spot in Dar
             </h1>
             <div className={classes.Line} />
             <p>{t("banner.description")}</p>
@@ -61,7 +62,7 @@ const Banner = () => {
               priority={true}
               blurDataURL={getBlurDataUrl()}
               placeholder="blur"
-              alt="Sifmax Beauty Parlour"
+              alt="Sifmax Beauty Parlour Dar es Salaam"
             />
             <Image
               className={[
@@ -73,7 +74,7 @@ const Banner = () => {
               priority={true}
               blurDataURL={getBlurDataUrl()}
               placeholder="blur"
-              alt="Sifmax Beauty Parlour"
+              alt="Sifmax Beauty Parlour Dar es Salaam"
             />
             <Image
               className={[
@@ -85,7 +86,7 @@ const Banner = () => {
               src={banner_03}
               blurDataURL={getBlurDataUrl()}
               placeholder="blur"
-              alt="Sifmax Beauty Parlour"
+              alt="Sifmax Beauty Parlour Dar es Salaam"
             />
           </div>
         </div>
