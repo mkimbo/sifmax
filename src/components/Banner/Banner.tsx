@@ -113,7 +113,7 @@ const Banner = () => {
         </div>
       </div>
 
-      <a className={`${classes.Scroll} hidden md:flex`} href="#about">
+      <a className={`${classes.Scroll} hidden md:flex `} href="#about">
         <ChevronDown className="animate-bounce" size={32} />
       </a>
     </div>

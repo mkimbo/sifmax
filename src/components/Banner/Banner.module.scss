@@ -70,18 +70,19 @@
           font-size: 0.8em;
           font-family: "Poppins", sans-serif;
 
-          color: black;
+          background-color: transparent;
+          color: white;
 
           text-align: center;
           text-decoration: none;
-          background-color: stylesheet.$gold1;
+
           border: 1px solid stylesheet.$gold1;
 
           transition: all 0.3s;
 
           &:hover {
-            background-color: transparent;
-            color: white;
+            color: black;
+            background-color: stylesheet.$gold1;
           }
         }
       }

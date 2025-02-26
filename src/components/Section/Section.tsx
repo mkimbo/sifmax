@@ -9,7 +9,7 @@ const Section = (props: any) => {
   return (
     <section className={classes.Section} id={props.id}>
       <div className={classes.Main}>
-        <h1 className={classes.Meta}>{t(props.meta)}</h1>
+        {/* <h1 className={classes.Meta}>{t(props.meta)}</h1> */}
         <h1 className={classes.Name}>{t(props.name)}</h1>
         <div className={classes.Line} />
         <p className={classes.Description}>{t(props.description)}</p>

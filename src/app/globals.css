@@ -110,6 +110,10 @@ body {
     min-width: 11.5vw;
     min-height: 11.5vw;
   }
+  .section-description {
+    width: 65%;
+    line-height: 1.75em;
+  }
 }
 
 .service-list-height {
@@ -120,4 +124,27 @@ body {
   .service-list-height {
     max-height: 400px;
   }
+}
+
+.decorative-line {
+  background-image: url("../assets/icons/line.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 80%;
+  height: 0.5em;
+
+  margin: 0.5em auto;
+}
+
+.section-description {
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  margin: auto;
+  width: 90%;
+
+  text-align: center;
+  line-height: 1.65em;
 }

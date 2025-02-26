@@ -7,19 +7,23 @@ import Gallery from "@/components/Gallery/Gallery";
 import Section from "@/components/Section/Section";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import { ExpandableCardDemo } from "@/components/ExpandableCards/ExpandableCards";
+import AboutSifmax from "@/components/About/ParallaxVideo";
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-[200vh]">
       <Banner />
-      <Section
+      {/* <Section
         id="about"
         meta="about.meta"
         name="Sifmax Beauty Parlour"
         description="about.description"
       >
-        <About />
-      </Section>
+       
+      </Section> */}
+
+      <AboutSifmax />
+
       <Section
         id="services"
         meta="services.meta"
@@ -54,6 +58,6 @@ export default function Home() {
       </Section>
       <Address />
       <Footer />
-    </>
+    </div>
   );
 }

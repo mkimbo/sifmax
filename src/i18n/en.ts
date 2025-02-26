@@ -12,7 +12,7 @@ export default {
 
   "about.meta": "Welcome to",
   "about.description":
-    "Your premier beauty destination in Sinza, Dar es Salaam. We offer expert hair styling, professional makeup, manicures, pedicures, and comprehensive beauty treatments. Our skilled team combines modern techniques with personalized care to enhance your natural beauty.",
+    "Your premier beauty destination in Dar es Salaam. We offer expert hair styling, professional makeup, manicures, pedicures, and comprehensive body and spa services.",
   "about.nails":
     "Professional nail tech services that pamper your hands and feet to ensure healthy, beautiful nails.",
   "about.body":
