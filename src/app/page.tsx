@@ -1,4 +1,3 @@
-import About from "@/components/About/About";
 import Banner from "@/components/Banner/Banner";
 import Contacts from "@/components/Contacts/Contacts";
 import Footer from "@/components/Footer/Footer";
@@ -6,8 +5,8 @@ import Address from "@/components/Address/Address";
 import Gallery from "@/components/Gallery/Gallery";
 import Section from "@/components/Section/Section";
 import Testimonials from "@/components/Testimonials/Testimonials";
-import { ExpandableCardDemo } from "@/components/ExpandableCards/ExpandableCards";
 import AboutSifmax from "@/components/About/ParallaxVideo";
+import { ServiceCardsDemo } from "@/components/ExpandableCards/ServiceCards";
 
 export default function Home() {
   return (
@@ -27,10 +26,11 @@ export default function Home() {
       <Section
         id="services"
         meta="services.meta"
-        name="nav.services"
+        name="Our Services"
         description="services.description"
       >
-        <ExpandableCardDemo />
+        {/* <ExpandableCardDemo /> */}
+        <ServiceCardsDemo />
       </Section>
       <Section
         id="gallery"

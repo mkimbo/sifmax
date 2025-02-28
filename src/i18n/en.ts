@@ -26,7 +26,7 @@ export default {
 
   "services.meta": "The best in town",
   "services.description":
-    "Explore our complete list of services below. We pride ourselves on using quality products and modern techniques to ensure every client leaves feeling beautiful and confident. Visit our salon for the best beauty services in Sinza, Dar es Salaam.",
+    "Unlock a new level of confidence with our curated range of beauty services that combine expertise and luxury. Our skilled team uses modern techniques and quality products to deliver treatments that enhance your natural glow and elevate your style. Explore our service categories below and book your appointment now to experience the ultimate beauty salon transformation in Sinza, Dar es Salaam.",
 
   "gallery.meta": "See for yourself",
   "gallery.description":

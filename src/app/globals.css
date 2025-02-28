@@ -80,6 +80,9 @@ body {
   font-family: "Poppins";
 }
 
+.satisfy {
+  font-family: "Satisfy", cursive;
+}
 .minus-header {
   margin-top: 4em;
 }

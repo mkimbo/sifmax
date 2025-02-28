@@ -21,7 +21,7 @@ export const ServiceCard = (service: ServiceItemProps) => {
   };
 
   return (
-    <div className="flex flex-row justify-between w-full p-2 bg-[#f0efed] border-b border-gray-300">
+    <div className="flex flex-row justify-between w-full p-2 border-b border-gray-300">
       <div className="flex flex-col gap-y-1">
         <h5 className="font-bold">{title}</h5>
         <h6 className="font-medium">{`Tsh. ${price}`}</h6>
