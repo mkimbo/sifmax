@@ -4,7 +4,7 @@ import facial from "../../assets/images/facial2.jpg";
 import massage from "../../assets/images/body.webp";
 import bridal from "../../assets/images/bridal.webp";
 import hair from "../../assets/images/hair.webp";
-
+import hair1 from "../../assets/images/hair2.jpeg";
 export const sifmaxServiceBook = [
   {
     title: "CROTCH",
@@ -674,7 +674,7 @@ export const sifmaxServiceBook = [
 export const sifmaxServiceTypes = [
   {
     id: 5,
-    icon: hair,
+    icon: hair1,
     name: "Hair Styling",
     description:
       "Trendy braids, natural hair, and salon styling in Dar es Salaam.",
