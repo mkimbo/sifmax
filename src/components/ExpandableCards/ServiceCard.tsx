@@ -32,7 +32,7 @@ export const ServiceCard = (service: ServiceItemProps) => {
           onClick={handleCartAction}
           variant={inCart ? "destructive" : "default"}
         >
-          {inCart ? "Remove from Cart" : "Add to Cart"}
+          {inCart ? "Remove" : "Add to Cart"}
         </Button>
       </div>
     </div>

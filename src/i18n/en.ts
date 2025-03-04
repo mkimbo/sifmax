@@ -4,10 +4,10 @@ export default {
   "nav.about": "About",
   "nav.services": "Services",
   "nav.gallery": "Gallery",
-  "nav.contact": "Contacts",
+  "nav.contact": "Contact",
 
   "banner.description":
-    "Experience luxury and premium services tailored just for you at our serene location in Sinza, Dar es Salaam!",
+    "Experience luxury while getting the best services at our serene location in Sinza, Dar es Salaam.",
   "banner.cta": "Book Your Glam Session",
 
   "about.meta": "Welcome to",
@@ -26,19 +26,19 @@ export default {
 
   "services.meta": "The best in town",
   "services.description":
-    "Unlock a new level of confidence with our curated range of beauty services that combine expertise and luxury. Our skilled team uses modern techniques and quality products to deliver treatments that enhance your natural glow and elevate your style. Explore our service categories below and book your appointment now to experience the ultimate beauty salon transformation in Sinza, Dar es Salaam.",
+    "Unlock a new level of confidence with our curated range of beauty services that combine expertise and luxury. Explore our catalogue below and book your appointment now to experience the ultimate beauty transformation in Sinza, Dar es Salaam.",
 
   "gallery.meta": "See for yourself",
   "gallery.description":
-    "Browse through our collection of professional hair styling, makeup artistry, and nail care images that showcase our expertise and dedication to beauty excellence at Sifmax Beauty Parlour.",
+    "We provide the best services and trends leaving you feeling happy and confident with every visit. Below are some results of our expertise and dedication to beauty excellence at Sifmax Beauty Parlour.",
 
   "testimonials.meta": "Customer Stories",
   "testimonials.description":
-    "Our customers love our professional beauty services, friendly staff, and exceptional results. Join our growing community of happy clients who trust us for all their beauty needs.",
+    "Join our growing community of happy clients who trust us for all their beauty needs. We use modern techniques and quality products to deliver treatments that enhance your natural glow and elevate your style.",
 
   "contact.meta": "Always here for you",
   "contact.description":
-    "Visit Sifmax Beauty Parlour in Sinza, Dar es Salaam for professional beauty services. Contact us for consultations, pricing information, and special offers. Our friendly team is ready to enhance your beauty experience.",
+    "Visit Sifmax Beauty Parlour in Sinza, Dar es Salaam for professional beauty services. Contact us for consultations, pricing information, and special offers. Our friendly team is ready to help you achieve your beauty goals.",
   "contact.form.legend":
     "Have any questions? Feel free to use contact form below to get in touch with us. We will answer you as soon as possible!",
   "contact.form.name": "Your name",

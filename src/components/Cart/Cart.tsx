@@ -11,10 +11,12 @@ import {
 import { useCart } from "@/context/CartContext";
 import { X } from "lucide-react";
 import { ServiceCard } from "../ExpandableCards/ServiceCard";
+import { getUrlWhatsappMessage } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export default function Cart() {
   const { cart, removeFromCart, isCartOpen, toggleCart } = useCart();
-
+  const router = useRouter();
   const cartContent = (
     <>
       <ScrollArea className="flex-grow mb-4 bg-white">
@@ -29,7 +31,19 @@ export default function Cart() {
       </ScrollArea>
       <div className="mt-auto text-white">
         {/* <p className="font-semibold">Total: Tsh. {totalPrice.toFixed(2)}</p> */}
-        <Button disabled={cart.length === 0} className="w-full mt-2">
+        <Button
+          onClick={() => {
+            const msg = getUrlWhatsappMessage(
+              cart.map((i) => ({ name: i.title }))
+            );
+            const url = "https://wa.me/254713786782?text=" + msg;
+            // console.log(msg, "url", url);
+
+            router.push(url);
+          }}
+          disabled={cart.length === 0}
+          className="w-full mt-2"
+        >
           Book Services
         </Button>
       </div>
@@ -40,7 +54,7 @@ export default function Cart() {
     <Sheet open={isCartOpen} onOpenChange={toggleCart}>
       <SheetContent side="top" className="minus-header" hideClose={true}>
         <SheetHeader>
-          <SheetTitle className="text-white flex flex-row justify-between items-center align-middle">
+          <SheetTitle className="text-white mb-4 flex flex-row justify-between items-center align-middle">
             <span className="text-base">
               {cart.length === 0 ? "Cart is empty" : "Cart"}
             </span>

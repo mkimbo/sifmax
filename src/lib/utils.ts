@@ -10,13 +10,13 @@ export const getUrlWhatsappMessage = (
     name: string;
   } | null)[]
 ) => {
-  const start = "Hi, I would like the following:\n";
+  const start = "Hi, Please confirm the prices and availability of:\n";
   const servicesString = `${services
-    .map((service) => service && `${service.name.replaceAll("&", "and")}, `)
-    .join("\n")}`;
+    .map((service) => service && `${service.name.replaceAll("&", "and")} `)
+    .join(",\n")}`;
   const end = "\n\nWhen are you available?";
 
-  return encodeURI(start + servicesString + end);
+  return encodeURI(start + servicesString);
 };
 
 export const getBlurDataUrl = () => {

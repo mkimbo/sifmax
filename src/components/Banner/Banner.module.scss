@@ -63,11 +63,12 @@
           display: block;
 
           width: fit-content;
-          height: 3.5em;
-          padding: 0 1.5em;
-          line-height: 3.5em;
+          height: 2.5em;
+          padding: 0 8px;
+          line-height: 2.5em;
 
-          font-size: 0.8em;
+          font-size: 0.7em;
+
           font-family: "Poppins", sans-serif;
 
           background-color: transparent;
@@ -196,6 +197,14 @@
             font-size: 2vw;
             margin: 0 0 0.5em;
             width: 87.5%;
+          }
+
+          a {
+            height: 3.5em;
+            padding: 0 1.5em;
+            line-height: 3.5em;
+
+            font-size: 0.8em;
           }
         }
 

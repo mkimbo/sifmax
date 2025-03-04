@@ -98,6 +98,34 @@ body {
   min-height: calc(30vw - 4px);
 }
 
+.sifmax-button {
+  display: block;
+
+  width: fit-content;
+  height: 2.5em;
+  padding: 0 8px;
+  line-height: 2.5em;
+
+  font-size: 0.7em;
+
+  font-family: "Poppins", sans-serif;
+
+  background-color: transparent;
+  color: white;
+
+  text-align: center;
+  text-decoration: none;
+
+  border: 1px solid #f5c870;
+
+  transition: all 0.3s;
+
+  &:hover {
+    color: black;
+    background-color: #f5c870;
+  }
+}
+
 @media (min-width: 720px) {
   .service-card-size {
     min-width: 14vw;
@@ -105,6 +133,13 @@ body {
   }
   .service-list-height {
     max-height: 500px;
+  }
+  .sifmax-button {
+    height: 3.5em;
+    padding: 0 1.5em;
+    line-height: 3.5em;
+
+    font-size: 1em;
   }
 }
 

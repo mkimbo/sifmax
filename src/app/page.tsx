@@ -7,6 +7,7 @@ import Section from "@/components/Section/Section";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import AboutSifmax from "@/components/About/ParallaxVideo";
 import { ServiceCardsDemo } from "@/components/ExpandableCards/ServiceCards";
+import DynamicFrameLayout from "@/components/Gallery/DynamicGallery";
 
 export default function Home() {
   return (
@@ -33,14 +34,6 @@ export default function Home() {
         <ServiceCardsDemo />
       </Section>
       <Section
-        id="gallery"
-        meta="gallery.meta"
-        name="nav.gallery"
-        description="gallery.description"
-      >
-        <Gallery />
-      </Section>
-      <Section
         id="testimonials"
         meta="testimonials.meta"
         name="nav.testimonials"
@@ -48,6 +41,18 @@ export default function Home() {
       >
         <Testimonials />
       </Section>
+      <Section
+        id="gallery"
+        meta="gallery.meta"
+        name="nav.gallery"
+        description="gallery.description"
+      >
+        {/* <Gallery /> */}
+        <div className="w-full max-w-5xl mx-auto md:flex-grow h-[60vh] md:h-[90vh]">
+          <DynamicFrameLayout />
+        </div>
+      </Section>
+
       <Section
         id="contact"
         meta="contact.meta"

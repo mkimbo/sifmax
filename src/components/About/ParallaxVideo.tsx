@@ -117,6 +117,9 @@ function AboutSifmax() {
         <p className="section-description text-gray-300 max-w-4xl">
           {t("about.description")}
         </p>
+        <a href="#testimonials" className="sifmax-button mx-auto mt-5">
+          See what our customers say
+        </a>
       </div>
     </VideoParallax>
   );
