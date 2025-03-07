@@ -36,7 +36,7 @@ export default function Cart() {
             const msg = getUrlWhatsappMessage(
               cart.map((i) => ({ name: i.title }))
             );
-            const url = "https://wa.me/254713786782?text=" + msg;
+            const url = "https://wa.me/255713786782?text=" + msg;
             // console.log(msg, "url", url);
 
             router.push(url);
