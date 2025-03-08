@@ -43,7 +43,7 @@ const poppins = localFont({
 const siteURL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sifmax.com";
 const title = "Sifmax Beauty Parlour | Hair, Makeup & Spa in Dar es Salaam";
 const description =
-  "Visit Sifmax Beauty Parlour in Sinza, Dar es Salaam for professional hair styling, makeup, body treatments, and more. Book now for a premium salon experience!";
+  "Luxury beauty salon in Sinza, Dar es Salaam offering a wide range of services including haircuts, styling, facials, massages, and body treatments.";
 export const metadata: Metadata = {
   metadataBase: new URL(siteURL),
   title: title,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         height: 1080,
       },
     ],
-    locale: "en-KE",
+    locale: "en-TZ",
     type: "website",
   },
   robots: {

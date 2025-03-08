@@ -26,9 +26,9 @@ const Footer = () => {
         {/* <img className={classes.Logo} src={logo} alt='Sifmax Beauty Parlour Ealing Logo' /> */}
         <div className={classes.Content}>
           <p>
-            Copyright Sifmax Beauty Parlour &copy; {new Date().getFullYear()}{" "}
+            &copy; {new Date().getFullYear()} Sifmax Beauty Parlour.{" "}
             <br className={classes.Break} />
-            All Rights Reserved
+            All Rights Reserved.
           </p>
           <p>
             Created by{" "}

@@ -2,8 +2,8 @@
 
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
 import image from "../../assets/images/review1.jpeg";
-import image2 from "../../assets/images/bride.jpeg";
-import image3 from "../../assets/images/review3.jpeg";
+import image2 from "../../assets/images/facial.webp";
+import image3 from "../../assets/images/bridal.webp";
 
 const reviews = [
   {
