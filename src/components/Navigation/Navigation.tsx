@@ -80,7 +80,11 @@ const Navigation = () => {
             </a>
           </li>
           <li>
-            <a className={classes.Link} href="#testimonials">
+            <a
+              className={classes.Link}
+              href="#testimonials"
+              onClick={() => setExpand(false)}
+            >
               {t("nav.testimonials")}
             </a>
           </li>

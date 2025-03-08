@@ -4,14 +4,15 @@ import React, { useState, useEffect } from "react";
 import classes from "./Banner.module.scss";
 
 import banner_01 from "../../assets/images/sifmax7.png";
-import banner_02 from "../../assets/images/sifmax8.png";
+import banner_02 from "../../assets/images/sifmax01.png";
 import banner_03 from "../../assets/images/sifmax3.png";
 import banner_04 from "../../assets/images/sifmax4.png";
 import banner_05 from "../../assets/images/sifmax5.png";
 import nails1 from "../../assets/images/nails1.jpeg";
 import nails2 from "../../assets/images/nails3.jpeg";
 import hair1 from "../../assets/images/hair2.jpeg";
-import hair2 from "../../assets/images/hair1.jpeg";
+import hair4 from "../../assets/images/hair4.jpeg";
+import hair6 from "../../assets/images/hair6.jpeg";
 import shortBlonde from "../../assets/images/review1.jpeg";
 import nailsClient from "../../assets/images/review3.jpeg";
 import Image from "next/image";
@@ -33,6 +34,7 @@ const suranna = localFont({
 });
 
 const bannerItems = [
+  // { src: banner_02, alt: "Sifmax Beauty Parlour Dar es Salaam" },
   { src: banner_01, alt: "Sifmax Beauty Parlour Dar es Salaam" },
   {
     src: hair1,
@@ -43,10 +45,13 @@ const bannerItems = [
     alt: "A satisfied manicure client at Sifmax Beauty Parlour Dar es Salaam",
   },
   {
-    src: hair2,
+    src: hair6,
     alt: "A satisfied hair styling client at Sifmax Beauty Parlour Dar es Salaam",
   },
-  { src: banner_03, alt: "Sifmax Beauty Parlour Dar es Salaam" },
+  {
+    src: hair4,
+    alt: "A satisfied hair styling client at Sifmax Beauty Parlour Dar es Salaam",
+  },
 ];
 
 const Banner = () => {

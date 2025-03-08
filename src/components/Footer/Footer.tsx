@@ -38,7 +38,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🐱‍👤
+                AcidCat Digital
               </a>
             </span>
           </p>

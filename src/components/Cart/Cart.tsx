@@ -44,7 +44,7 @@ export default function Cart() {
           disabled={cart.length === 0}
           className="w-full mt-2"
         >
-          Book Services
+          Confirm
         </Button>
       </div>
     </>

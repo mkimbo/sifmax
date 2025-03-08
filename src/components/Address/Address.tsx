@@ -73,7 +73,7 @@ const Address = () => {
             href="#"
             className="opacity-60 text-white hover:opacity-100"
           >
-            0713786782
+            +255 713 786 782
           </a>
         </div>
 
@@ -105,16 +105,16 @@ const Address = () => {
         <div>
           <a
             rel="noreferrer noopener"
-            href="https://www.instagram.com/sifmax_beauty_parlour/#/"
+            href="https://www.threads.net/@sifmax_beauty_parlour"
             className="opacity-60 text-white hover:opacity-100"
           >
-            Facebook
+            Threads
           </a>
         </div>
         <div>
           <a
             rel="noreferrer noopener"
-            href="https://www.instagram.com/sifmax_beauty_parlour/#/"
+            href="https://www.tiktok.com/@sifmax_beauty"
             className="opacity-60 text-white hover:opacity-100"
           >
             TikTok

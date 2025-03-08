@@ -46,6 +46,7 @@
     "react-dropzone": "^14.3.5",
     "react-hook-form": "^7.53.2",
     "sass": "^1.80.6",
+    "schema-dts": "^1.1.5",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.1",

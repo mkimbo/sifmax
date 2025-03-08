@@ -8,16 +8,15 @@ import image3 from "../../assets/images/review3.jpeg";
 const reviews = [
   {
     id: 1,
-    name: "Sarah",
-    quote:
-      "Amazing! Very professional, environment was calm, clean and soothing to be in. The massage was very relaxing, and my face was feeling extremely smooth afterwards.",
+    name: "Nana Mapozi",
+    quote: "You have a very good service.. I love you for nothing.",
     src: image,
   },
   {
     id: 2,
-    name: "Emma",
+    name: "Ramadhani Haji",
     quote:
-      "Staff were very kind, welcoming, carried out my waxing so efficiently and results were great. The parlour is beautiful, very clean and welcoming, relaxing and comfortable. Thank you",
+      "I am very impressed with sifmax services they have good barbers and your services are good overall..I will come back again and again.",
     src: image2,
   },
   {

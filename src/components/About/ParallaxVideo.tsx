@@ -113,12 +113,12 @@ function AboutSifmax() {
         <h1 className="mb-4 text-4xl text-[#f5c870] md:text-6xl montserrat">
           {t("SIFMAX BEAUTY PARLOUR")}
         </h1>
-        <div className="w-full items-center decorative-line mx-auto" />
-        <p className="section-description text-gray-300 max-w-4xl">
+        <div className="hidden lg:flex w-full items-center decorative-line mx-auto" />
+        <p className="hidden lg:flex section-description text-gray-300 max-w-4xl">
           {t("about.description")}
         </p>
         <a href="#testimonials" className="sifmax-button mx-auto mt-5">
-          See what our customers say
+          See our work
         </a>
       </div>
     </VideoParallax>
