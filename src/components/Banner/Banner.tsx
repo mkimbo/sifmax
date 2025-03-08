@@ -60,7 +60,7 @@ const Banner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActive(active + 1 <= bannerItems.length ? active + 1 : 1);
-    }, 7000);
+    }, 3000);
 
     return () => clearInterval(interval);
   });
