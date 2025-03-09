@@ -676,8 +676,7 @@ export const sifmaxServiceTypes = [
     id: 5,
     icon: hair1,
     name: "Hair Styling",
-    description:
-      "Trendy braids, natural hair, and salon styling in Dar es Salaam.",
+    description: "services.hair",
     services: [
       "HAIR STYLES AND BRAIDS",
       "CHEMICAL",
@@ -690,15 +689,14 @@ export const sifmaxServiceTypes = [
     id: 4,
     icon: massage,
     name: "Body Care",
-    description:
-      "Relaxing massages, scrubs, and waxing for smooth, radiant skin.",
+    description: "services.body",
     services: ["MASSAGE", "SCRUB", "WAXING"],
   },
   {
     id: 1,
     icon: nails,
     name: "Nail Care",
-    description: "Manicure and pedicure services for perfectly polished nails.",
+    description: "services.nails",
     services: ["MANICURE", "PEDICURE"],
   },
 
@@ -706,16 +704,14 @@ export const sifmaxServiceTypes = [
     id: 3,
     icon: facial,
     name: "Facials & Makeup",
-    description:
-      "Expert facials, lashes, and flawless makeup for any occasion.",
+    description: "services.facial",
     services: ["MAKE UP", "FACIAL", "LASHES"],
   },
   {
     id: 6,
     icon: bridal,
     name: "Bridal Services",
-    description:
-      "Customized bridal packages for a picture-perfect wedding day.",
+    description: "services.bridal",
     services: ["BRIDAL PACKAGES", "ADDITIONAL SERVICES"],
   },
 ];

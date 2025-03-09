@@ -1,16 +1,17 @@
 export default {
   "nav.discover": "Discover",
-  "nav.testimonials": "Testimonials",
+  "nav.testimonials": "Reviews",
   "nav.about": "About",
   "nav.services": "Services",
   "nav.gallery": "Gallery",
   "nav.contact": "Contact",
 
   "banner.description":
-    "Experience luxury while getting the best services at our serene location in Sinza, Dar es Salaam.",
-  "banner.cta": "Book Your Glam Session",
+    "Experience luxury and the best services at our serene location in Sinza, Dar es Salaam.",
+  "banner.cta": "Our Service Catalogue",
 
   "about.meta": "Welcome to",
+  "about.cta": "See Our Work",
   "about.description":
     "Your premier beauty destination in Dar es Salaam. We offer expert hair styling, professional makeup, manicures, pedicures, and comprehensive body and spa services.",
   "about.nails":
@@ -27,6 +28,16 @@ export default {
   "services.meta": "The best in town",
   "services.description":
     "Unlock a new level of confidence with our curated range of beauty services that combine expertise and luxury. Explore our catalogue below and book your appointment now to experience the ultimate beauty transformation in Sinza, Dar es Salaam.",
+  "services.hair":
+    "Trendy braids, natural hair, and salon styling in Dar es Salaam.",
+  "services.facial":
+    "Expert facials, lashes, and flawless makeup for any occasion.",
+  "services.nails":
+    "Manicure and pedicure services for perfectly polished nails.",
+  "services.body":
+    "Relaxing massages, scrubs, and waxing for smooth, radiant skin.",
+  "services.bridal":
+    "Customized bridal packages for a picture-perfect wedding day.",
 
   "gallery.meta": "See for yourself",
   "gallery.description":
@@ -47,7 +58,7 @@ export default {
   "contact.form.submit": "Send Message",
   "contact.form.mobile": "Your Phone",
   "contact.form.title": "Connect with Us",
-  "language.notification": "Tovuti inatumia lugha ya Kiswahili.",
+  "language.notification": "Website inatumia lugha ya kiswahili.",
 
   "footer.opening": "Opening Hours",
   "footer.openingTime": "We are open everyday",

@@ -18,6 +18,7 @@ import { useOutsideClick } from "@/hooks/use-outside-click";
 import { sifmaxServiceBook, sifmaxServiceTypes } from "./servicebook";
 import { ServiceCard } from "./ServiceCard";
 import { MoveRight } from "lucide-react";
+import { useTranslation } from "@/i18n";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -177,7 +178,7 @@ export const Card = ({
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
-
+  const t = useTranslation();
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -241,7 +242,7 @@ export const Card = ({
                 layoutId={layout ? `title-${card.title}` : undefined}
                 className="text-xl md:text-2xl font-medium text-neutral-700 mt-4 dark:text-white"
               >
-                {card.title}
+                {t(card.title)}
               </motion.p>
               <div className="py-10">{card.content}</div>
             </motion.div>
@@ -265,7 +266,7 @@ export const Card = ({
             layoutId={layout ? `title-${card.title}` : undefined}
             className="text-gray-300 text-sm md:text-base font-medium  max-w-xs text-left font-sans [text-wrap:balance]  mt-2"
           >
-            {card.title}
+            {t(card.title)}
           </motion.p>
           <motion.p
             //layoutId={layout ? `title-${card.}` : undefined}

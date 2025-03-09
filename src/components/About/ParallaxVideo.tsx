@@ -173,7 +173,7 @@ function AboutSifmax() {
           {t("about.description")}
         </p>
         <a href="#testimonials" className="sifmax-button mx-auto mt-5">
-          See our work
+          {t("about.cta")}
         </a>
       </div>
     </VideoBackground>

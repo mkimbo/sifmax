@@ -58,7 +58,7 @@ const Form = () => {
       console.log(message, "message");
       setLoading(false);
       router.push(
-        `https://wa.me/254713786782?text= + ${encodeURI(
+        `https://wa.me/255713786782?text= + ${encodeURI(
           message.message.toString().replaceAll("&", "and")
         )}`
       );

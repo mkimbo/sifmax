@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   twitter: {
     title: title,
     card: "summary_large_image",
-    description: title,
+    description: description,
     images: [siteURL + "/sifmax-OG.jpg"],
     creator: "@JackMkimbo",
   },
