@@ -158,7 +158,7 @@ function AboutSifmax() {
   const t = useTranslation();
   return (
     <VideoBackground
-      src="https://sifmax.vercel.app/sifmax.mp4"
+      src="https://sifmax.com/sifmax.mp4"
       //speed={0.8} // Reduced speed for smoother effect
     >
       <div className="text-center">

@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import AboutSifmax from "@/components/About/ParallaxVideo";
 import { ServiceCardsDemo } from "@/components/ExpandableCards/ServiceCards";
 import DynamicFrameLayout from "@/components/Gallery/DynamicGallery";
+import FooterBlock from "@/components/Footer/Footer2";
 
 export default function Home() {
   return (
@@ -61,8 +62,8 @@ export default function Home() {
       >
         <Contacts />
       </Section>
-      <Address />
-      <Footer />
+      {/* <Address /> */}
+      <FooterBlock />
     </div>
   );
 }

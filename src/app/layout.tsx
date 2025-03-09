@@ -116,8 +116,9 @@ const businessData = {
   description:
     "Luxury beauty salon in Sinza, Dar es Salaam offering a wide range of services including haircuts, styling, facials, massages, and body treatments.",
   image: siteURL + "/sifmax-OG.jpg",
+  logo: siteURL + "/logo-small.png",
   url: siteURL,
-  telephone: "+255713786782",
+  telephone: "+255-713786782",
   address: {
     streetAddress: "Lukundo street, SINZA VATICAN",
     addressLocality: "Dar es Salaam",

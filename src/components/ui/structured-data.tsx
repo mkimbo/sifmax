@@ -71,6 +71,7 @@ const StructuredData: FC<StructuredDataProps> = ({
     const serviceItems: Service[] = category.services.map((service) => ({
       "@type": "Service",
       name: service.name,
+      provider: "Sifmax Beauty Parlour",
       description: service.description,
       ...(service.price && {
         offers: {
