@@ -131,6 +131,7 @@ export function VideoBackground({
           autoPlay
           muted
           loop
+          poster="/sifmax-OG.jpg"
           playsInline
           className="absolute inset-0 h-full w-full object-cover"
           style={{ opacity: videoOpacity }}
