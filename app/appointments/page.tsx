@@ -2,20 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { ArrowLeft, CalendarRange, Sparkles } from "lucide-react";
+import { ArrowLeft, CalendarRange } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-
 import { CategorySelector } from "@/components/CategorySelector";
-import { ServicesList } from "@/components/ServicesList";
 import { Service } from "@/components/Services";
 import {
   sifmaxServiceBook,
   sifmaxServiceCategories as categories,
 } from "@/lib/serviceBook";
 import { MultiStepBookingForm } from "@/components/MultiStepBookingForm";
-import { SearchBar } from "@/components/ServiceSearchBar";
 import ChooseService from "@/components/ChooseService";
 
 export default function AppointmentsPage() {
