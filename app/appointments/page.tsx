@@ -1,147 +1,74 @@
-"use client";
+import { Suspense } from "react";
 
-import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { ArrowLeft, CalendarRange } from "lucide-react";
-import Link from "next/link";
+import AppointmentsPage from "@/components/AppointmentsPage";
 
-import { CategorySelector } from "@/components/CategorySelector";
-import { Service } from "@/components/Services";
-import {
-  sifmaxServiceBook,
-  sifmaxServiceCategories as categories,
-} from "@/lib/serviceBook";
-import { MultiStepBookingForm } from "@/components/MultiStepBookingForm";
-import ChooseService from "@/components/ChooseService";
-
-export default function AppointmentsPage() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const categoryParam = searchParams.get("category");
-
-  const services = sifmaxServiceBook.map((service) => {
-    return {
-      ...service,
-      price: "Tsh. " + service.price,
-      serviceId: generateKey(service.title) + generateKey(service.category),
-    };
-  });
-
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(
-    categoryParam
-  );
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [showBookingForm, setShowBookingForm] = useState(false);
-
-  // Update selected category when URL param changes
-  useEffect(() => {
-    setSelectedCategory(categoryParam);
-    setSelectedService(null);
-    setShowBookingForm(false);
-  }, [categoryParam]);
-
-  function generateKey(title: string): string {
-    return title.replace(/\/|\s|\)|\(/g, "").toLowerCase();
-  }
-
-  //Filter services by category
-  const filteredServices = selectedCategory
-    ? services.filter((service) => service.id === selectedCategory)
-    : [];
-
-  // Handle category selection
-  const handleCategorySelect = (categoryId: string) => {
-    router.push(`/appointments?category=${categoryId}`);
-  };
-
-  // Handle service selection
-  const handleServiceSelect = (service: Service) => {
-    setSelectedService(service);
-    setShowBookingForm(true);
-  };
-
-  // Handle booking completion
-  const handleBookingComplete = () => {
-    // Reset state and redirect to home
-    setSelectedService(null);
-    setShowBookingForm(false);
-    setTimeout(() => {
-      router.push("/");
-    }, 3000);
-  };
-
-  // Go back to service selection
-  const handleBackToServices = () => {
-    setShowBookingForm(false);
-    setSelectedService(null);
-  };
-
+export default function Page() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-5 px-2">
-        {selectedService && (
-          <div className="flex items-center gap-2 mb-3">
-            <ArrowLeft
-              onClick={() => {
-                setSelectedService(null);
-                setShowBookingForm(false);
-              }}
-              className="h-5 w-5 md:h-7 md:w-7 text-primary hover:text-primary/80 transition-colors"
-            />
-            <h1 className="text-xl md:text-3xl font-bold flex items-center gap-2">
-              <CalendarRange className="h-7 w-7 text-primary" />
-              Book an Appointment
-            </h1>
-          </div>
-        )}
+    <Suspense
+      fallback={
+        <div className="animate-pulse container mx-auto py-5 px-2">
+          <div className="mb-3">
+            <div className="flex items-center gap-2 mb-3">
+              {/* Arrow skeleton */}
+              <div className="h-5 w-5 md:h-7 md:w-7 rounded-full bg-muted"></div>
 
-        {!selectedCategory ? (
-          // Step 1: Show category selection if no category is selected
-          <>
-            <div className="mb-3">
-              <div className="flex items-center gap-2 mb-3">
-                <Link
-                  href={categoryParam ? "/appointments" : "/"}
-                  className="text-primary hover:text-primary/80 transition-colors"
-                >
-                  <ArrowLeft className="h-5 w-5 md:h-7 md:w-7" />
-                </Link>
-                <h1 className="text-xl md:text-3xl font-bold flex items-center gap-2">
-                  Select a Service Category
-                </h1>{" "}
-              </div>
-              <p className="text-muted-foreground">
-                Choose the type of service you'd like to book
-              </p>
+              {/* Heading skeleton */}
+              <div className="h-7 md:h-9 w-64 bg-muted rounded-md"></div>
             </div>
-            <CategorySelector
-              categories={categories}
-              onSelectCategory={handleCategorySelect}
-            />
-          </>
-        ) : showBookingForm ? (
-          // Step 3: Show booking form after service selection
-          <div className="bg-background rounded-lg border border-border p-3">
-            {selectedService && (
-              <MultiStepBookingForm
-                selectedServices={[selectedService]}
-                removeService={() => {
-                  setSelectedService(null);
-                  setShowBookingForm(false);
-                }}
-                onComplete={handleBookingComplete}
-              />
-            )}
+
+            {/* Paragraph skeleton */}
+            <div className="h-5 w-full max-w-md bg-muted rounded-md"></div>
           </div>
-        ) : (
-          // Step 2: Show services for selected category
-          <ChooseService
-            selectedCategory={selectedCategory}
-            filteredServices={filteredServices}
-            handleServiceSelect={handleServiceSelect}
-          />
-        )}
-      </div>
-    </div>
+
+          {/* CategorySelector skeleton */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {/* Generate 5 skeleton cards */}
+            {Array(5)
+              .fill(0)
+              .map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-background  rounded-lg border border-border p-6 h-[320px]"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    {/* Icon skeleton */}
+                    <div className="h-12 w-12 rounded-full bg-muted"></div>
+                    {/* Title skeleton */}
+                    <div className="h-6 w-32 bg-muted rounded-md"></div>
+                  </div>
+
+                  {/* Description skeleton */}
+                  {/* <div className="space-y-2 mb-6">
+                    <div className="h-4 w-full bg-muted rounded-md"></div>
+                    <div className="h-4 w-full bg-muted rounded-md"></div>
+                    <div className="h-4 w-3/4 bg-muted rounded-md"></div>
+                  </div> */}
+
+                  {/* Features skeleton */}
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center">
+                      <div className="h-3 w-3 rounded-full bg-muted mr-2"></div>
+                      <div className="h-4 w-32 bg-muted rounded-md"></div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="h-3 w-3 rounded-full bg-muted mr-2"></div>
+                      <div className="h-4 w-40 bg-muted rounded-md"></div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="h-3 w-3 rounded-full bg-muted mr-2"></div>
+                      <div className="h-4 w-36 bg-muted rounded-md"></div>
+                    </div>
+                  </div>
+
+                  {/* Button skeleton */}
+                  <div className="h-10 w-full bg-muted rounded-md mt-auto"></div>
+                </div>
+              ))}
+          </div>
+        </div>
+      }
+    >
+      <AppointmentsPage />
+    </Suspense>
   );
 }
