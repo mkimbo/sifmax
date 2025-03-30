@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { Service } from "./Services";
 
 // Form schema with Zod
-export const formSchema = z.object({
+const formSchema = z.object({
   date: z.date({
     required_error: "Please select a date",
   }),
@@ -37,7 +37,7 @@ export const formSchema = z.object({
   notes: z.string().optional(),
 });
 
-export type BookingFormValues = z.infer<typeof formSchema>;
+type BookingFormValues = z.infer<typeof formSchema>;
 
 // Mock function to fetch available time slots
 const fetchAvailableTimeSlots = async (date: Date): Promise<string[]> => {
@@ -113,6 +113,11 @@ const DateStep = () => {
     await trigger("date");
   };
 
+  //scroll to top when rendered
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -121,8 +126,8 @@ const DateStep = () => {
       transition={{ duration: 0.3 }}
       className="space-y-4"
     >
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold mb-2">Select Appointment Date</h3>
+      <div className="text-center mb-3 md:mb-6">
+        {/* <h3 className="text-xl font-semibold mb-2">Select Appointment Date</h3> */}
         <p className="text-muted-foreground text-sm">
           Choose your preferred date for your appointment
         </p>
@@ -190,6 +195,10 @@ const TimeSlotStep = () => {
     await trigger("timeSlot");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -199,7 +208,7 @@ const TimeSlotStep = () => {
       className="space-y-4"
     >
       <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold mb-2">Select Time Slot</h3>
+        {/* <h3 className="text-xl font-semibold mb-2">Select Time Slot</h3> */}
         <p className="text-muted-foreground text-sm">
           Available time slots for{" "}
           {selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : ""}
@@ -249,6 +258,10 @@ const NameStep = () => {
     await trigger("name");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -258,16 +271,16 @@ const NameStep = () => {
       className="space-y-4"
     >
       <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold mb-2">Your Name</h3>
+        {/* <h3 className="text-xl font-semibold mb-2">Your Name</h3> */}
         <p className="text-muted-foreground text-sm">
           Please enter your full name
         </p>
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-medium">
+        {/* <label htmlFor="name" className="text-sm font-medium">
           Full Name
-        </label>
+        </label> */}
         <input
           id="name"
           type="text"
@@ -293,6 +306,10 @@ const ContactStep = () => {
     await trigger("phone");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -302,7 +319,7 @@ const ContactStep = () => {
       className="space-y-4"
     >
       <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold mb-2">Contact Information</h3>
+        {/* <h3 className="text-xl font-semibold mb-2">Contact Information</h3> */}
         <p className="text-muted-foreground text-sm">
           How can we reach you regarding your appointment?
         </p>
@@ -352,7 +369,9 @@ const ContactStep = () => {
 // Step 5: Special Requests
 const SpecialRequestsStep = () => {
   const { register } = useFormContext<BookingFormValues>();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -362,7 +381,7 @@ const SpecialRequestsStep = () => {
       className="space-y-4"
     >
       <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold mb-2">Special Requests</h3>
+        {/* <h3 className="text-xl font-semibold mb-2">Special Requests</h3> */}
         <p className="text-muted-foreground text-sm">
           Any special requests or notes for your appointment? (Optional)
         </p>
@@ -453,7 +472,7 @@ const ProgressIndicator = ({
         <div key={index} className="flex items-center">
           <div
             className={cn(
-              "w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium transition-colors",
+              "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors",
               currentStep > index
                 ? "bg-primary text-primary-foreground"
                 : currentStep === index
@@ -477,32 +496,120 @@ const ProgressIndicator = ({
   );
 };
 
+const ProgressBar = ({
+  currentStep,
+  totalSteps,
+  className,
+}: {
+  currentStep: number;
+  totalSteps: number;
+  className?: string;
+}) => {
+  const [isPulsing, setIsPulsing] = useState(false);
+
+  // Calculate progress percentage
+  const progress = (currentStep / totalSteps) * 100;
+
+  // Toggle pulsing effect every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsPulsing((prev) => !prev);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className={cn("w-full mx-auto", className)}>
+      <div className="relative h-1 bg-muted rounded-full overflow-hidden my-1">
+        <div
+          className={cn(
+            "absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-700 ease-in-out",
+            isPulsing && "opacity-80 scale-y-90"
+          )}
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      {/* Optional text indicator */}
+      {/* <div className="mt-2 text-sm text-center text-muted-foreground">
+        Step {currentStep} of {totalSteps}
+      </div> */}
+    </div>
+  );
+};
+
 interface MultiStepBookingFormProps {
   selectedServices: Service[];
   removeService: (serviceId: string) => void;
   onComplete: () => void;
-  currentStep: number;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-  isSubmitting: boolean;
-  setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
-  formData: BookingFormValues | null;
-  setFormData: React.Dispatch<React.SetStateAction<BookingFormValues | null>>;
 }
 
 export function MultiStepBookingForm({
   selectedServices,
   removeService,
   onComplete,
-  currentStep,
-  setCurrentStep,
-  isSubmitting,
-  setIsSubmitting,
-  formData,
-  setFormData,
 }: MultiStepBookingFormProps) {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<BookingFormValues | null>(null);
+
   const totalSteps = 5;
 
-  const { handleSubmit } = useFormContext<BookingFormValues>();
+  const methods = useForm<BookingFormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      date: undefined,
+      timeSlot: "",
+      name: "",
+      phone: "",
+      email: "",
+      notes: "",
+    },
+    mode: "onChange",
+  });
+
+  const { handleSubmit, trigger, watch, formState } = methods;
+
+  // Check if current step is valid
+  const isCurrentStepValid = () => {
+    switch (currentStep) {
+      case 0: // Date step
+        return !!watch("date");
+      case 1: // Time slot step
+        return !!watch("timeSlot");
+      case 2: // Name step
+        return !!watch("name") && !formState.errors.name;
+      case 3: // Contact step
+        return !!watch("phone") && !formState.errors.phone;
+      case 4: // Special requests step
+        return true; // Always valid as it's optional
+      default:
+        return false;
+    }
+  };
+
+  const goToNextStep = async () => {
+    const isValid = await trigger(
+      currentStep === 0
+        ? "date"
+        : currentStep === 1
+        ? "timeSlot"
+        : currentStep === 2
+        ? "name"
+        : currentStep === 3
+        ? "phone"
+        : "notes"
+    );
+
+    if (isValid) {
+      setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+    }
+  };
+
+  const goToPreviousStep = () => {
+    setCurrentStep((prev) => Math.max(prev - 1, 0));
+  };
 
   const onSubmit: SubmitHandler<BookingFormValues> = async (data) => {
     setIsSubmitting(true);
@@ -512,13 +619,13 @@ export function MultiStepBookingForm({
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // Store form data for success step
-      //   setFormData(data);
+      setFormData(data);
 
-      //   // Move to success step
-      //   setCurrentStep(totalSteps);
+      // Move to success step
+      setCurrentStep(totalSteps);
 
-      //   // Call onComplete callback
-      //   onComplete();
+      // Call onComplete callback
+      onComplete();
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -549,50 +656,94 @@ export function MultiStepBookingForm({
   };
 
   return (
-    <form
-      id="service-booking"
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 max-h-[60vh] overflow-y-auto"
-    >
-      {/* Selected services list */}
-      {/* <div className="bg-muted/30 px-4 py-2 rounded-lg mb-3">
-        <h4 className="font-medium text-sm mb-2">Selected Services</h4>
-        <ul className="space-y-2">
-          {selectedServices.map((service) => (
-            <li
-              key={service.serviceId}
-              className="flex justify-between items-center"
-            >
-              <div className="flex items-center text-base">
-                <div className="h-2 w-2 rounded-full bg-primary mr-2"></div>
-                <span>{service.title}</span>
-              </div>
-              <Button
-                size="sm"
-                variant="ghost"
-                className="w-fit"
-                onClick={() => removeService(service.serviceId)}
-                type="button"
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Selected services list */}
+        <div className="bg-muted/30 p-4 rounded-lg mb-3 md::mb-6">
+          <h4 className="font-medium mb-3 text-sm md:text-base">
+            Selected Service
+          </h4>
+          <ul className="space-y-2">
+            {selectedServices.map((service) => (
+              <li
+                key={service.serviceId}
+                className="flex justify-between items-center"
               >
-                <X className="h-3 w-3" />
+                <div className="flex items-center text-muted-foreground text-sm md:text-base">
+                  <div className="h-2 w-2 rounded-full bg-primary mr-2"></div>
+                  <span>{service.title}</span>
+                </div>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="w-fit"
+                  onClick={() => removeService(service.serviceId)}
+                  type="button"
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </li>
+            ))}
+          </ul>
+          {/* <div className="border-t border-border mt-3 pt-3 flex justify-between items-center"></div> */}
+          {currentStep < totalSteps && (
+            <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+          )}
+        </div>
+
+        {/* Progress indicator */}
+        {/* {currentStep < totalSteps && (
+          <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+        )} */}
+
+        {/* Form steps */}
+        <div className="min-h-fit ">
+          <AnimatePresence mode="wait">{renderStep()}</AnimatePresence>
+        </div>
+
+        {/* Navigation buttons */}
+        {currentStep < totalSteps && (
+          <div className="flex justify-between pt-4 border-t border-border">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={goToPreviousStep}
+              disabled={currentStep === 0}
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </Button>
+
+            {currentStep < totalSteps - 1 ? (
+              <Button
+                type="button"
+                onClick={goToNextStep}
+                disabled={!isCurrentStepValid()}
+              >
+                Next
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </li>
-          ))}
-        </ul>
-        <div className="border-t border-border mt-3 pt-3 flex justify-between items-center"></div>
-      </div> */}
-
-      {/* Progress indicator */}
-      {currentStep < totalSteps && (
-        <ProgressIndicator currentStep={currentStep} totalSteps={totalSteps} />
-      )}
-
-      {/* Form steps */}
-      <div className="min-h-[300px]">
-        <AnimatePresence mode="wait">{renderStep()}</AnimatePresence>
-      </div>
-
-      {/* Navigation buttons */}
-    </form>
+            ) : (
+              <Button
+                type="submit"
+                disabled={isSubmitting || !isCurrentStepValid()}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Book Appointment
+                    <Check className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
+        )}
+      </form>
+    </FormProvider>
   );
 }

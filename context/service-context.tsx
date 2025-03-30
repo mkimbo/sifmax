@@ -5,6 +5,8 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 
 type ServiceContextType = {
   selectedServices: Service[];
+  bookingStep: number;
+  updateBookingStep: (step: number) => void;
   addService: (service: Service) => void;
   removeService: (serviceId: string) => void;
   clearServices: () => void;
@@ -15,9 +17,14 @@ const ServiceContext = createContext<ServiceContextType | undefined>(undefined);
 
 export function ServiceProvider({ children }: { children: ReactNode }) {
   const [selectedServices, setSelectedServices] = useState<Service[]>([]);
+  const [bookingStep, setBookingStep] = useState(0);
 
   const addService = (service: Service) => {
     setSelectedServices((prev) => [...prev, service]);
+  };
+
+  const updateBookingStep = (step: number) => {
+    setBookingStep(step);
   };
 
   const removeService = (serviceId: string) => {
@@ -37,6 +44,8 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
   return (
     <ServiceContext.Provider
       value={{
+        bookingStep,
+        updateBookingStep,
         selectedServices,
         addService,
         removeService,

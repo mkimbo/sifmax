@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Check, ChevronDown, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ServiceBookingForm } from "./ServiceBookingForm";
 import {
   Modal,
   ModalTrigger,
@@ -16,6 +15,7 @@ import {
 } from "./ui/animated-modal";
 import { useServiceContext } from "@/context/service-context";
 import { sifmaxServiceBook, sifmaxServiceCategories } from "@/lib/serviceBook";
+import { useRouter } from "next/navigation";
 
 const icons = [
   {
@@ -130,7 +130,7 @@ const icons = [
   },
 ];
 
-const getIcon = (name: string) => {
+export const getIcon = (name: string) => {
   const icon = icons.find((icon) => icon.name === name);
   return icon ? (
     icon.icon
@@ -175,6 +175,8 @@ export function ServicesSection() {
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showBookingForm, setShowBookingForm] = useState(false);
+
+  const router = useRouter();
 
   const allServices = sifmaxServiceBook.map((service) => {
     return {
@@ -266,157 +268,15 @@ export function ServicesSection() {
                     </li>
                   ))}
                 </ul>
-
-                {/* Modal integration */}
-                <Modal>
-                  <ModalTrigger asChild className="w-full">
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => {
-                        setSelectedCategory(category.id);
-                        setShowBookingForm(selectedServices.length > 0);
-                      }}
-                    >
-                      Book Service
-                    </Button>
-                  </ModalTrigger>
-                  <ModalBody className="w-[95%] max-w-3xl">
-                    {showBookingForm ? (
-                      <ServiceBookingForm
-                        onBack={() => {
-                          setShowBookingForm(false);
-                          clearServices();
-                        }}
-                      />
-                    ) : (
-                      <>
-                        <ModalContent className="p-4">
-                          <div className="mb-2 md:mb-6">
-                            <h3 className="text-2xl font-bold mb-2 flex items-center">
-                              <span className="bg-primary/10 text-primary p-2 rounded-full mr-3">
-                                {category.icon}
-                              </span>
-                              {category.title}
-                            </h3>
-                            <p className="text-muted-foreground text-center md:text-left">
-                              Select the services you'd like to book
-                            </p>
-                          </div>
-
-                          {/* Service selection */}
-                          <div
-                            id="service-selection"
-                            className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 "
-                          >
-                            {Object.entries(
-                              filteredServices.reduce(
-                                (acc: Record<string, Service[]>, service) => {
-                                  const category = service.category;
-                                  if (!acc[category]) {
-                                    acc[category] = [];
-                                  }
-                                  acc[category].push(service);
-                                  return acc;
-                                },
-                                {}
-                              )
-                            ).map(([category, services], index, array) => (
-                              <div
-                                key={category}
-                                className="w-full bg-background p-4 md:p-7 mb-4"
-                              >
-                                {array.length > 1 && (
-                                  <h4 className="font-medium text-lg text-center mb-4">
-                                    {category}
-                                  </h4>
-                                )}
-                                {services.map((service) => {
-                                  const isSelected = isServiceSelected(
-                                    service.serviceId
-                                  );
-
-                                  return (
-                                    <div
-                                      key={service.serviceId}
-                                      className={`border mb-2 rounded-lg p-4 transition-colors ${
-                                        isSelected
-                                          ? "border-primary bg-primary/5"
-                                          : "border-border hover:border-primary/30"
-                                      }`}
-                                    >
-                                      <div className="flex justify-between items-start">
-                                        <h4 className="font-medium text-sm">
-                                          {service.title}
-                                        </h4>
-                                        <div className="flex flex-col items-end">
-                                          <Button
-                                            size="sm"
-                                            variant={
-                                              isSelected ? "default" : "outline"
-                                            }
-                                            className="w-fit"
-                                            onClick={() =>
-                                              toggleServiceSelection(service)
-                                            }
-                                          >
-                                            {isSelected ? (
-                                              <>
-                                                <X className="h-3 w-3 mr-1" />
-                                                Remove
-                                              </>
-                                            ) : (
-                                              <>
-                                                <Check className="h-3 w-3 mr-1" />
-                                                Select
-                                              </>
-                                            )}
-                                          </Button>
-                                          {/* <span className="font-semibold text-primary">
-                                        {new Intl.NumberFormat("en-TZ", {
-                                          style: "currency",
-                                          currency: "TZS",
-                                          minimumFractionDigits: 0,
-                                          maximumFractionDigits: 0,
-                                        }).format(service.price)}
-                                      </span>
-                                      <span className="text-xs text-muted-foreground">
-                                        {service.duration}
-                                      </span> */}
-                                        </div>
-                                      </div>
-                                      <span className="font-semibold text-primary">
-                                        {service.price}
-                                        {/* {new Intl.NumberFormat("en-TZ", {
-                                      style: "currency",
-                                      currency: "TZS",
-                                      minimumFractionDigits: 0,
-                                      maximumFractionDigits: 0,
-                                    }).format(service.price)} */}
-                                      </span>
-                                      {/* <p className="text-sm text-muted-foreground mb-3">
-                                    {service.description}
-                                  </p> */}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            ))}
-                          </div>
-                        </ModalContent>
-                        <ModalFooter>
-                          <Button
-                            onClick={() => setShowBookingForm(true)}
-                            disabled={selectedServices.length === 0}
-                          >
-                            <Sparkles className="h-4 w-4 mr-2" />
-                            Book Now ({selectedServices.length})
-                          </Button>
-                        </ModalFooter>
-                      </>
-                    )}
-                  </ModalBody>
-                </Modal>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() =>
+                    router.push(`/appointments?category=${category.id}`)
+                  }
+                >
+                  Book Service
+                </Button>
               </div>
             </div>
           ))}

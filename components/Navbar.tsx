@@ -29,11 +29,11 @@ export function Navbar() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#gallery", label: "Gallery" },
-    { href: "#testimonials", label: "Testimonials" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#about", label: "About" },
+    { href: "/#services", label: "Services" },
+    { href: "/#gallery", label: "Gallery" },
+    { href: "/#testimonials", label: "Testimonials" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
@@ -108,7 +108,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <Button asChild size="sm" className="hidden sm:flex">
-              <Link href="#book">Book Appointment</Link>
+              <Link href="/appointments">Book Appointment</Link>
             </Button>
 
             {/* Mobile Menu */}
@@ -169,7 +169,7 @@ export function Navbar() {
 
                   <div className="mt-auto py-4">
                     <Button asChild className="w-full mb-4">
-                      <Link href="#book" onClick={closeSheet}>
+                      <Link href="/appointments" onClick={closeSheet}>
                         Book Appointment
                       </Link>
                     </Button>

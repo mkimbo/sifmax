@@ -812,6 +812,7 @@ export const sifmaxServiceCategories = [
       "From cutting-edge cuts to vibrant colors and elegant styling, our expert stylists create looks that enhance your natural beauty.",
     image: "/images/hair.webp",
     alt: "Hair Styling Services at Sifmax Beauty Parlour",
+    searchPlaceholder: "Search for hair styles, treatments, etc",
     icon: "hair",
     features: [
       "Haircuts & Styling",
@@ -826,6 +827,7 @@ export const sifmaxServiceCategories = [
       "Relax and rejuvenate with our therapeutic body treatments designed to relieve stress and enhance your wellbeing.",
     image: "/images/body.webp",
     alt: "Body Care Services at Sifmax Beauty Parlour",
+    searchPlaceholder: "Search for massages, waxing, etc",
     icon: "body",
     features: [
       "Relaxing Massages",
@@ -840,6 +842,7 @@ export const sifmaxServiceCategories = [
       "Pamper your hands and feet with our luxurious nail treatments, from classic manicures to artistic nail designs.",
     image: "/images/nail.webp",
     alt: "Nail Care Services at Sifmax Beauty Parlour",
+    searchPlaceholder: "Search for manicures, pedicures, etc",
     icon: "nail",
     features: [
       "Manicures & Pedicures",
@@ -856,6 +859,7 @@ export const sifmaxServiceCategories = [
       "Revitalize your skin with our premium facials and showcase your beauty with professional makeup applications.",
     image: "/images/facial2.jpg",
     alt: "Facial and Makeup Services at Sifmax Beauty Parlour",
+    searchPlaceholder: "Search for facials, makeup, lashes etc",
     icon: "facial",
     features: [
       "Deep Cleansing Facials",
@@ -871,6 +875,7 @@ export const sifmaxServiceCategories = [
       "Comprehensive bridal beauty packages to ensure you look and feel your absolute best on your special day.",
     image: "/images/bridal.webp",
     alt: "Bridal Packages at Sifmax Beauty Parlour",
+    searchPlaceholder: "Search for bridal services, packages, etc",
     icon: "bridal",
     features: [
       "Bridal Makeup & Hair",
