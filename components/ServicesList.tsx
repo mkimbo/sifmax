@@ -99,7 +99,7 @@ export function ServicesList({
                       Selected
                     </>
                   ) : (
-                    "Book This Service"
+                    "Book Service"
                   )}
                 </Button>
               </motion.div>

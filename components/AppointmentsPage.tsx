@@ -65,9 +65,9 @@ export default function AppointmentsPage() {
     // Reset state and redirect to home
     setSelectedService(null);
     setShowBookingForm(false);
-    setTimeout(() => {
-      router.push("/");
-    }, 3000);
+    // setTimeout(() => {
+    //   router.push("/");
+    // }, 3000);
   };
 
   // Go back to service selection
@@ -90,7 +90,7 @@ export default function AppointmentsPage() {
             />
             <h1 className="text-xl md:text-3xl font-bold flex items-center gap-2">
               <CalendarRange className="h-7 w-7 text-primary" />
-              Book an Appointment
+              Book Your Appointment
             </h1>
           </div>
         )}

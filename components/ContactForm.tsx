@@ -47,7 +47,7 @@ export function ContactForm() {
 
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // await new Promise((resolve) => setTimeout(resolve, 1500));
 
       console.log("Form submitted:", data);
       setIsSubmitted(true);
@@ -61,7 +61,7 @@ export function ContactForm() {
 
   return (
     <div className="bg-background p-6 rounded-lg shadow-sm border border-border">
-      <h3 className="font-semibold text-lg mb-4">Contact Form</h3>
+      <h3 className="font-semibold text-lg mb-4">Send Us A Message</h3>
 
       {isSubmitted ? (
         <div className="text-center py-8">

@@ -52,7 +52,7 @@ export default function Loading() {
         </div>
 
         {/* Loading text */}
-        <div className="flex items-center justify-center relative h-6 w-full">
+        {/* <div className="flex items-center justify-center relative h-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,10 +66,10 @@ export default function Loading() {
             {progress >= 66 && progress < 100 && "Almost ready..."}
             {progress >= 100 && ""}
           </motion.div>
-        </div>
+        </div> */}
 
         {/* Decorative elements */}
-        <div className="flex justify-center mt-12 space-x-3">
+        {/* <div className="flex justify-center mt-12 space-x-3">
           {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
@@ -85,7 +85,7 @@ export default function Loading() {
               }}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Background decoration */}

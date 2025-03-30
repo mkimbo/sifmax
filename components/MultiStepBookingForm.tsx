@@ -18,6 +18,8 @@ import { ArrowLeft, ArrowRight, Check, Loader2, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Service } from "./Services";
+import { getFreeSlots } from "@/lib/actions";
+import { useServiceContext } from "@/context/service-context";
 
 // Form schema with Zod
 const formSchema = z.object({
@@ -39,53 +41,37 @@ const formSchema = z.object({
 
 type BookingFormValues = z.infer<typeof formSchema>;
 
+function formatTime(isoString: string): string {
+  const date = new Date(isoString);
+  return date
+    .toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .replace(" ", "");
+}
+
 // Mock function to fetch available time slots
 const fetchAvailableTimeSlots = async (date: Date): Promise<string[]> => {
-  // Simulate API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Return different time slots based on the day of the week
-      const day = date.getDay();
-      if (day === 0) {
-        // Sunday - fewer slots
-        resolve(["10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM"]);
-      } else if (day === 6) {
-        // Saturday - more slots
-        resolve([
-          "09:00 AM",
-          "10:00 AM",
-          "11:00 AM",
-          "12:00 PM",
-          "01:00 PM",
-          "02:00 PM",
-          "03:00 PM",
-          "04:00 PM",
-          "05:00 PM",
-          "06:00 PM",
-          "07:00 PM",
-        ]);
-      } else {
-        // Weekdays
-        resolve([
-          "09:00 AM",
-          "10:00 AM",
-          "11:00 AM",
-          "12:00 PM",
-          "01:00 PM",
-          "02:00 PM",
-          "03:00 PM",
-          "04:00 PM",
-          "05:00 PM",
-        ]);
-      }
-    }, 800); // Simulate network delay
+  console.log("date.toISOString(), date,", date.toDateString());
+
+  const slots = await getFreeSlots({
+    inputDate: format(date, "yyyy-MM-dd"),
+    serviceName: "SOme servicce",
+    approxDurationMinutes: 90,
+    calendarId: process.env.APPOINTMENT_CALENDAR_ID!,
   });
+  return slots;
 };
+
+const totalSteps = 5;
 
 // Step 1: Date Selection
 const DateStep = () => {
   const { control, formState, setValue, watch, trigger } =
     useFormContext<BookingFormValues>();
+  const { toggleLoadingSlots } = useServiceContext();
   const [isLoading, setIsLoading] = useState(false);
   const [noSlotsAvailable, setNoSlotsAvailable] = useState(false);
   const selectedDate = watch("date");
@@ -98,6 +84,7 @@ const DateStep = () => {
     setNoSlotsAvailable(false);
 
     setIsLoading(true);
+    toggleLoadingSlots(true);
     try {
       const slots = await fetchAvailableTimeSlots(date);
       if (slots.length === 0) {
@@ -108,15 +95,16 @@ const DateStep = () => {
       setNoSlotsAvailable(true);
     } finally {
       setIsLoading(false);
+      toggleLoadingSlots(false);
     }
 
     await trigger("date");
   };
 
   //scroll to top when rendered
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <motion.div
@@ -142,13 +130,13 @@ const DateStep = () => {
           className="rounded-md border"
         />
       </div>
-
+      {/* 
       {isLoading && (
         <div className="flex justify-center items-center py-4">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
           <span className="ml-2">Checking available slots...</span>
         </div>
-      )}
+      )} */}
 
       {noSlotsAvailable && !isLoading && (
         <div className="bg-destructive/10 text-destructive p-3 rounded-md text-center">
@@ -188,16 +176,13 @@ const TimeSlotStep = () => {
     };
 
     loadTimeSlots();
+    window.scrollTo(0, 0);
   }, [selectedDate]);
 
   const handleTimeSlotSelect = async (slot: string) => {
     setValue("timeSlot", slot);
     await trigger("timeSlot");
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <motion.div
@@ -233,7 +218,7 @@ const TimeSlotStep = () => {
               )}
               onClick={() => handleTimeSlotSelect(slot)}
             >
-              {slot}
+              {formatTime(slot)}
             </Button>
           ))}
         </div>
@@ -258,9 +243,9 @@ const NameStep = () => {
     await trigger("name");
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <motion.div
@@ -306,9 +291,9 @@ const ContactStep = () => {
     await trigger("phone");
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <motion.div
@@ -369,9 +354,9 @@ const ContactStep = () => {
 // Step 5: Special Requests
 const SpecialRequestsStep = () => {
   const { register } = useFormContext<BookingFormValues>();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -553,8 +538,10 @@ export function MultiStepBookingForm({
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<BookingFormValues | null>(null);
-
-  const totalSteps = 5;
+  const { loadingSlots } = useServiceContext();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentStep]);
 
   const methods = useForm<BookingFormValues>({
     resolver: zodResolver(formSchema),
@@ -604,6 +591,7 @@ export function MultiStepBookingForm({
 
     if (isValid) {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+      console.log("currentStep", Math.min(currentStep + 1, totalSteps));
     }
   };
 
@@ -616,10 +604,11 @@ export function MultiStepBookingForm({
 
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // Store form data for success step
       setFormData(data);
+      console.log("Form submitted:", data);
 
       // Move to success step
       setCurrentStep(totalSteps);
@@ -713,8 +702,39 @@ export function MultiStepBookingForm({
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
-
-            {currentStep < totalSteps - 1 ? (
+            {currentStep != totalSteps - 1 && (
+              <Button
+                type="button"
+                onClick={goToNextStep}
+                disabled={!isCurrentStepValid() || loadingSlots}
+              >
+                Next
+                {loadingSlots ? (
+                  <Loader2 className="ml2 h-4 w-4 animate-spin" />
+                ) : (
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                )}
+              </Button>
+            )}
+            {currentStep == totalSteps - 1 && (
+              <Button
+                type="submit"
+                disabled={isSubmitting || !isCurrentStepValid()}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Book Appointment
+                    <Check className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            )}
+            {/* {currentStep != totalSteps - 1 ? (
               <Button
                 type="button"
                 onClick={goToNextStep}
@@ -740,7 +760,7 @@ export function MultiStepBookingForm({
                   </>
                 )}
               </Button>
-            )}
+            )} */}
           </div>
         )}
       </form>
