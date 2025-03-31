@@ -16,9 +16,9 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check, Loader2, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { calculateEndDateTime, cn } from "@/lib/utils";
 import { Service } from "./Services";
-import { getFreeSlots } from "@/lib/actions";
+import { createAppointmentSlot, getFreeSlots } from "@/lib/actions";
 import { useServiceContext } from "@/context/service-context";
 
 // Form schema with Zod
@@ -54,13 +54,11 @@ function formatTime(isoString: string): string {
 
 // Mock function to fetch available time slots
 const fetchAvailableTimeSlots = async (date: Date): Promise<string[]> => {
-  console.log("date.toISOString(), date,", date.toDateString());
-
   const slots = await getFreeSlots({
     inputDate: format(date, "yyyy-MM-dd"),
     serviceName: "SOme servicce",
-    approxDurationMinutes: 90,
-    calendarId: process.env.APPOINTMENT_CALENDAR_ID!,
+    approxDurationMinutes: 30,
+    calendarId: process.env.SIFMAX_APPOINTMENT_CALENDAR_ID!,
   });
   return slots;
 };
@@ -183,6 +181,7 @@ const TimeSlotStep = () => {
     setValue("timeSlot", slot);
     await trigger("timeSlot");
   };
+  console.log("availableSlots", availableSlots[0]);
 
   return (
     <motion.div
@@ -403,11 +402,11 @@ const SuccessStep = ({ formData }: { formData: BookingFormValues }) => {
       <p className="text-muted-foreground mb-6">
         Your appointment has been scheduled for{" "}
         {formData.date ? format(formData.date, "EEEE, MMMM d, yyyy") : ""} at{" "}
-        {formData.timeSlot}.
+        {formatTime(formData.timeSlot)}
       </p>
       <p className="text-sm text-muted-foreground mb-6">
-        A confirmation has been sent to your{" "}
-        {formData.email ? "email" : "phone"}. We look forward to seeing you!
+        We will contact you to confirm the appointment. We look forward to
+        seeing you!
       </p>
 
       <div className="bg-muted/30 p-4 rounded-lg text-left max-w-md mx-auto">
@@ -421,7 +420,7 @@ const SuccessStep = ({ formData }: { formData: BookingFormValues }) => {
           </li>
           <li className="flex justify-between">
             <span className="text-muted-foreground">Time:</span>
-            <span className="font-medium">{formData.timeSlot}</span>
+            <span className="font-medium">{formatTime(formData.timeSlot)}</span>
           </li>
           <li className="flex justify-between">
             <span className="text-muted-foreground">Name:</span>
@@ -604,8 +603,26 @@ export function MultiStepBookingForm({
 
     try {
       // Simulate API call
+      const res = await createAppointmentSlot({
+        user_name: data.name,
+        user_email: data.email,
+        user_phone: data.phone,
+        note: data.notes,
+        start_date: data.timeSlot,
+        end_date: calculateEndDateTime(data.timeSlot, 120) ?? data.timeSlot,
+        status: "new",
+        booking_intent:
+          selectedServices[0].title +
+          `(${selectedServices[0].category})` +
+          " - " +
+          selectedServices[0].price +
+          "for 30 mins",
+      });
       // await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      // if (!res.success) {
+      //   throw new Error("Failed to create appointment slot.");
+      // }
       // Store form data for success step
       setFormData(data);
       console.log("Form submitted:", data);
@@ -614,7 +631,7 @@ export function MultiStepBookingForm({
       setCurrentStep(totalSteps);
 
       // Call onComplete callback
-      onComplete();
+      //onComplete();
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -648,37 +665,39 @@ export function MultiStepBookingForm({
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Selected services list */}
-        <div className="bg-muted/30 p-4 rounded-lg mb-3 md::mb-6">
-          <h4 className="font-medium mb-3 text-sm md:text-base">
-            Selected Service
-          </h4>
-          <ul className="space-y-2">
-            {selectedServices.map((service) => (
-              <li
-                key={service.serviceId}
-                className="flex justify-between items-center"
-              >
-                <div className="flex items-center text-muted-foreground text-sm md:text-base">
-                  <div className="h-2 w-2 rounded-full bg-primary mr-2"></div>
-                  <span>{service.title}</span>
-                </div>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="w-fit"
-                  onClick={() => removeService(service.serviceId)}
-                  type="button"
+        {currentStep !== totalSteps && (
+          <div className="bg-muted/30 p-4 rounded-lg mb-3 md::mb-6">
+            <h4 className="font-medium mb-3 text-sm md:text-base">
+              Selected Service
+            </h4>
+            <ul className="space-y-2">
+              {selectedServices.map((service) => (
+                <li
+                  key={service.serviceId}
+                  className="flex justify-between items-center"
                 >
-                  <X className="h-3 w-3" />
-                </Button>
-              </li>
-            ))}
-          </ul>
-          {/* <div className="border-t border-border mt-3 pt-3 flex justify-between items-center"></div> */}
-          {currentStep < totalSteps && (
-            <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-          )}
-        </div>
+                  <div className="flex items-center text-muted-foreground text-sm md:text-base">
+                    <div className="h-2 w-2 rounded-full bg-primary mr-2"></div>
+                    <span>{service.title}</span>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="w-fit"
+                    onClick={() => removeService(service.serviceId)}
+                    type="button"
+                  >
+                    <X className="h-3 w-3" />
+                  </Button>
+                </li>
+              ))}
+            </ul>
+            {/* <div className="border-t border-border mt-3 pt-3 flex justify-between items-center"></div> */}
+            {currentStep < totalSteps && (
+              <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+            )}
+          </div>
+        )}
 
         {/* Progress indicator */}
         {/* {currentStep < totalSteps && (

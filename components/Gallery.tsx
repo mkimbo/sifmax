@@ -103,7 +103,7 @@ const galleryData: GalleryCategory[] = [
       {
         id: "salon-8",
         type: "image",
-        src: "/images/sifmax7.png",
+        src: "/images/sifmax9.png",
         alt: "Sifmax Beauty Parlour Waiting Area",
       },
     ],

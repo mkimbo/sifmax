@@ -64,10 +64,11 @@ export default function AppointmentsPage() {
   const handleBookingComplete = () => {
     // Reset state and redirect to home
     setSelectedService(null);
-    setShowBookingForm(false);
-    // setTimeout(() => {
-    //   router.push("/");
-    // }, 3000);
+
+    setTimeout(() => {
+      router.push("/");
+      setShowBookingForm(false);
+    }, 3000);
   };
 
   // Go back to service selection

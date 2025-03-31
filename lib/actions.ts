@@ -9,7 +9,8 @@ import {
   compareAsc,
 } from "date-fns";
 import { toZonedTime, fromZonedTime } from "date-fns-tz";
-
+import { parseStringify } from "./utils";
+import { nanoid } from "nanoid";
 // --- Configuration ---
 const TARGET_TIMEZONE = "Africa/Dar_es_Salaam"; // EAT (UTC+3)
 
@@ -84,8 +85,9 @@ export const getFreeSlots = async ({
   // --- 3. Fetch Busy Intervals from Google Calendar API (using UTC range) ---
   let busyIntervalsUTC: TimeInterval[] = [];
   try {
-    const apiKey = process.env.FREE_BUSY_API_KEY;
-    const targetCalendarId = process.env.APPOINTMENT_CALENDAR_ID || calendarId;
+    const apiKey = process.env.SIFMAX_FREE_BUSY_API_KEY;
+    const targetCalendarId =
+      process.env.SIFMAX_APPOINTMENT_CALENDAR_ID || calendarId;
 
     if (!apiKey)
       throw new Error("Missing Google Calendar API Key (FREE_BUSY_API_KEY)");
@@ -227,190 +229,30 @@ export const getFreeSlots = async ({
   // --- 6. Return the list of valid start times (UTC ISO strings) ---
   return validStartSlotsUTC;
 };
-// Helper function to get UTC midnight of a given date string
-// const getUTCMidnight = (dateStr: string): Date => {
-//   const date = new Date(dateStr);
-//   // Ensure we are working with UTC to match ISO strings and API behavior
-//   date.setUTCFullYear(date.getUTCFullYear());
-//   date.setUTCMonth(date.getUTCMonth());
-//   date.setUTCDate(date.getUTCDate());
-//   date.setUTCHours(0, 0, 0, 0);
-//   return date;
-// };
 
-// export const getFreeSlots = async ({
-//   inputDate,
-//   calendarId,
-//   serviceName, // Included for context, not used in logic currently
-//   approxDurationMinutes,
-// }: {
-//   inputDate: string;
-//   calendarId: string;
-//   serviceName: string;
-//   approxDurationMinutes: number;
-// }) => {
-//   // --- 1. Input Validation & Setup ---
-//   console.log(calendarId, "calendarId");
+export const createAppointmentSlot = async (
+  params: CreateAppointmentSlotParams
+) => {
+  try {
+    const res = await fetch(`${process.env.APPOINTMENTS_HOOK}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data_type: "new",
+        user_id: nanoid(),
+        ...params,
+      }),
+    });
 
-//   //   assert(calendarId, "calendarId is required.");
-//   //   assert(inputDate, "inputDate is required.");
-//   //   assert(approxDurationMinutes > 0, "approxDurationMinutes must be positive.");
+    if (!res.ok) {
+      throw new Error("Failed to create appointment slot.");
+    }
 
-//   const BUFFER_MINUTES = 30;
-//   const totalDurationMinutes = approxDurationMinutes + BUFFER_MINUTES;
-
-//   // --- 2. Define Time Range for the Query (Full Day in UTC) ---
-//   const dayStart = getUTCMidnight(inputDate);
-//   const dayEnd = new Date(dayStart);
-//   dayEnd.setUTCDate(dayEnd.getUTCDate() + 1); // Move to the start of the next day
-
-//   const timeMin = dayStart.toISOString();
-//   const timeMax = dayEnd.toISOString();
-
-//   // --- 3. Fetch Busy Intervals from Google Calendar API ---
-//   let busyIntervals: TimeInterval[] = [];
-//   try {
-//     // Ensure API key and potentially Calendar ID are securely sourced (e.g., env vars)
-//     const apiKey = process.env.FREE_BUSY_API_KEY;
-//     const targetCalendarId = process.env.APPOINTMENT_CALENDAR_ID || calendarId; // Allow override via env if needed
-
-//     if (!apiKey) {
-//       throw new Error("Missing Google Calendar API Key (FREE_BUSY_API_KEY)");
-//     }
-//     if (!targetCalendarId) {
-//       throw new Error(
-//         "Missing Calendar ID (APPOINTMENT_CALENDAR_ID or function input)"
-//       );
-//     }
-
-//     const res = await fetch(
-//       `https://www.googleapis.com/calendar/v3/freeBusy?key=${apiKey}`,
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Accept: "application/json", // Good practice
-//         },
-//         body: JSON.stringify({
-//           timeMin: timeMin,
-//           timeMax: timeMax,
-//           // Consider making TimeZone configurable or detecting it if needed
-//           // Using UTC as standard due to ISO strings, API usually defaults well.
-//           // timeZone: "UTC", // Explicitly setting UTC
-//           items: [
-//             {
-//               id: targetCalendarId,
-//             },
-//           ],
-//         }),
-//       }
-//     );
-
-//     if (!res.ok) {
-//       const errorBody = await res.text();
-//       throw new Error(
-//         `Google Calendar API error: ${res.status} ${res.statusText} - ${errorBody}`
-//       );
-//     }
-
-//     const response = await res.json();
-
-//     // Check if the specific calendar has data and busy times
-//     const calendarData = response?.calendars?.[targetCalendarId];
-//     const busyTimes = calendarData?.busy || []; // Default to empty array if no busy times
-
-//     // Convert ISO strings to Date objects and sort
-//     busyIntervals = busyTimes
-//       .map((busy: { start: string; end: string }) => ({
-//         start: new Date(busy.start),
-//         end: new Date(busy.end),
-//       }))
-//       .sort(
-//         (a: TimeInterval, b: TimeInterval) =>
-//           a.start.getTime() - b.start.getTime()
-//       );
-//   } catch (error) {
-//     console.error("Error fetching free/busy information:", error);
-//     // Depending on requirements, you might return empty array or re-throw
-//     return [];
-//     // Or: throw new Error("Failed to retrieve calendar availability.");
-//   }
-
-//   // --- 4. Calculate Free Gaps ---
-//   const freeGaps: TimeInterval[] = [];
-//   let currentPointer = new Date(dayStart); // Start at the beginning of the day
-
-//   busyIntervals.forEach((busy) => {
-//     // If there's a gap between the current pointer and the start of the busy interval
-//     if (busy.start > currentPointer) {
-//       freeGaps.push({
-//         start: new Date(currentPointer),
-//         end: new Date(busy.start),
-//       });
-//     }
-//     // Move the pointer to the end of the current busy interval
-//     // Use Math.max in case busy intervals overlap (take the later end time)
-//     currentPointer = new Date(
-//       Math.max(currentPointer.getTime(), busy.end.getTime())
-//     );
-//   });
-
-//   // Add the final gap from the last busy interval's end (or start of day if no busy times) to the end of the day
-//   if (currentPointer < dayEnd) {
-//     freeGaps.push({ start: new Date(currentPointer), end: new Date(dayEnd) });
-//   }
-
-//   // --- 5. Find Valid Slots within Free Gaps ---
-//   const validStartSlots: string[] = [];
-//   const totalDurationMillis = totalDurationMinutes * 60 * 1000;
-
-//   freeGaps.forEach((gap) => {
-//     const gapStartMillis = gap.start.getTime();
-//     const gapEndMillis = gap.end.getTime();
-//     const gapDurationMillis = gapEndMillis - gapStartMillis;
-
-//     // Skip gap if it's shorter than the required total duration
-//     if (gapDurationMillis < totalDurationMillis) {
-//       return;
-//     }
-
-//     // Start checking from the beginning of the gap, rounded up to the next hour
-//     let potentialStartTime = new Date(gap.start);
-
-//     // If the gap doesn't start exactly on an hour, move to the next hour
-//     if (
-//       potentialStartTime.getUTCMinutes() > 0 ||
-//       potentialStartTime.getUTCSeconds() > 0 ||
-//       potentialStartTime.getUTCMilliseconds() > 0
-//     ) {
-//       potentialStartTime.setUTCHours(
-//         potentialStartTime.getUTCHours() + 1,
-//         0,
-//         0,
-//         0
-//       );
-//     }
-
-//     // Iterate potential start times (hourly) within the gap
-//     while (true) {
-//       const potentialStartTimeMillis = potentialStartTime.getTime();
-//       const potentialEndTimeMillis =
-//         potentialStartTimeMillis + totalDurationMillis;
-
-//       // Check if the slot (start + total duration) fits within the current free gap
-//       if (potentialEndTimeMillis <= gapEndMillis) {
-//         // Valid slot found
-//         validStartSlots.push(potentialStartTime.toISOString());
-
-//         // Move to the next hour for the next potential slot
-//         potentialStartTime.setUTCHours(potentialStartTime.getUTCHours() + 1);
-//       } else {
-//         // This slot (and any further slots in this gap) won't fit, break inner loop
-//         break;
-//       }
-//     }
-//   });
-
-//   // --- 6. Return the list of valid start times ---
-//   return validStartSlots;
-// };
+    return { success: true };
+  } catch (error) {
+    console.error("An error occurred while creating a new appointment:", error);
+    return { success: false };
+  }
+};
