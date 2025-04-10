@@ -35,6 +35,10 @@ export const hero: Field = {
           label: 'Low Impact',
           value: 'lowImpact',
         },
+        {
+          label: 'Static Hero',
+          value: 'staticHero',
+        },
       ],
       required: true,
     },
