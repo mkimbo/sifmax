@@ -29,20 +29,21 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: {
-        '2xl': '2rem',
-        DEFAULT: '1rem',
-        lg: '2rem',
-        md: '2rem',
-        sm: '1rem',
-        xl: '2rem',
-      },
+      padding: '8px',
+      // padding: {
+      //   '2xl': '2rem',
+      //   DEFAULT: '1rem',
+      //   lg: '2rem',
+      //   md: '2rem',
+      //   sm: '1rem',
+      //   xl: '2rem',
+      // },
       screens: {
-        '2xl': '86rem',
-        lg: '64rem',
-        md: '48rem',
-        sm: '40rem',
-        xl: '80rem',
+        '2xl': '1536px',
+        // lg: '1400px',
+        // md: '48rem',
+        // sm: '40rem',
+        // xl: '80rem',
       },
     },
     extend: {
