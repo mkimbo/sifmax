@@ -20,9 +20,13 @@ import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloa
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
 import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/RowLabel'
-import { default as default_06a26fa2df1ef68236fcbbdde5a6492c } from '@/components/SifmaxLogo'
+import { Avatar as Avatar_810d39ff73455224e8eb6f5e1ca0ea2f } from '@/components/admin/Avatar'
+import { Nav as Nav_a9d4b87e0306b3ddfe97926a52a69591 } from '@/components/admin/Nav'
+import { Icon as Icon_a44df17d0fc3dcd873dae43dc3bf66bd } from '@/components/admin/Logo'
+import { default as default_34185716eb67cdcf32dc134036e963a3 } from '@/components/admin/SifmaxLogo'
 import { default as default_1a7510af427896d367a49dbf838d2de6 } from '@/components/BeforeDashboard'
-import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
+import { BeforeLogin as BeforeLogin_89344134860f9bc63867ffefbf33f214 } from '@/components/admin/BeforeLogin'
+import { Dashboard as Dashboard_0e7b23c75ea046975e1784ba01f82886 } from '@/components/admin/Dashboard'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -47,7 +51,11 @@ export const importMap = {
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,
   "@/Footer/RowLabel#RowLabel": RowLabel_1f6ff6ff633e3695d348f4f3c58f1466,
-  "@/components/SifmaxLogo#default": default_06a26fa2df1ef68236fcbbdde5a6492c,
+  "@/components/admin/Avatar#Avatar": Avatar_810d39ff73455224e8eb6f5e1ca0ea2f,
+  "@/components/admin/Nav#Nav": Nav_a9d4b87e0306b3ddfe97926a52a69591,
+  "@/components/admin/Logo#Icon": Icon_a44df17d0fc3dcd873dae43dc3bf66bd,
+  "@/components/admin/SifmaxLogo#default": default_34185716eb67cdcf32dc134036e963a3,
   "@/components/BeforeDashboard#default": default_1a7510af427896d367a49dbf838d2de6,
-  "@/components/BeforeLogin#default": default_8a7ab0eb7ab5c511aba12e68480bfe5e
+  "@/components/admin/BeforeLogin#BeforeLogin": BeforeLogin_89344134860f9bc63867ffefbf33f214,
+  "@/components/admin/Dashboard#Dashboard": Dashboard_0e7b23c75ea046975e1784ba01f82886
 }

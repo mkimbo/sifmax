@@ -22,14 +22,19 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import LandingPage from '@/blocks/LandingPage/config'
 import Appointments from '@/blocks/Appointments/config'
+import { superAdmin } from '@/access/superAdmin'
+import { superAdminOrPublished } from '@/access/superAdminOrPublished'
+import { adminGroups } from '@/utilities/adminGroups'
+import { superAdminCollection } from '@/access/superAdminCollection'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
-    create: authenticated,
-    delete: authenticated,
-    read: authenticatedOrPublished,
-    update: authenticated,
+    create: superAdmin,
+    delete: superAdmin,
+    read: superAdminOrPublished,
+    update: superAdmin,
+    admin: superAdmin,
   },
   // This config controls what's populated by default when a page is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
@@ -40,6 +45,7 @@ export const Pages: CollectionConfig<'pages'> = {
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
+
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
@@ -58,6 +64,8 @@ export const Pages: CollectionConfig<'pages'> = {
         req,
       }),
     useAsTitle: 'title',
+    group: adminGroups.website,
+    hidden: superAdminCollection,
   },
   fields: [
     {

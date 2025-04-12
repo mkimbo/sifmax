@@ -34,11 +34,11 @@ const BeforeLogin: React.FC = () => {
 
       {/* Welcome message */}
       <h2 className="text-2xl font-bold mb-3 text-white">Welcome to Sifmax Admin</h2>
-      <p className="text-muted-foreground mb-6">
+      {/* <p className="text-muted-foreground mb-6">
         This secure portal allows authorized personnel to manage the Sifmax Beauty Parlour website,
         including services, appointments, and content. Please log in with your credentials to
         continue.
-      </p>
+      </p> */}
 
       {/* Security note */}
       <div className="bg-primary/10 p-4 rounded-md text-sm text-foreground/80 w-full">

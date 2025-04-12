@@ -16,6 +16,9 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { Services } from './collections/Services'
+import { Customers } from './collections/Customers'
+import { Appointments } from './collections/Appointments'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,15 +26,25 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
+      views: {
+        dashboard: {
+          Component: '@/components/admin/Dashboard#Dashboard',
+        },
+      },
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
-      beforeLogin: ['@/components/BeforeLogin'],
+      beforeLogin: ['@/components/admin/BeforeLogin#BeforeLogin'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
       beforeDashboard: ['@/components/BeforeDashboard'],
+      Nav: '@/components/admin/Nav#Nav',
       graphics: {
-        Logo: '@/components/SifmaxLogo',
+        Icon: '@/components/admin/Logo#Icon',
+        Logo: '@/components/admin/SifmaxLogo',
       },
+    },
+    avatar: {
+      Component: '@/components/admin/Avatar#Avatar',
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -65,7 +78,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, Services, Customers, Appointments],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

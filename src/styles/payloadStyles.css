@@ -19,27 +19,26 @@
   --nav-width: 275px;
 
   /* Color Shades */
-
   --color-base-0: #ffffff;
-  --color-base-50: #fef8ee;
-  --color-base-100: #fdf2de;
-  --color-base-150: #fcebcd;
-  --color-base-200: #fbe4bc;
-  --color-base-250: #fbdeac;
-  --color-base-300: #fad79b;
-  --color-base-350: #f9d08a;
-  --color-base-400: #f8c979;
-  --color-base-450: #f7c369;
-  --color-base-500: #f29e0d;
-  --color-base-550: #d98e0c;
-  --color-base-600: #c8830b;
-  --color-base-650: #b8780a;
-  --color-base-700: #a76d09;
-  --color-base-750: #966208;
-  --color-base-800: #131312;
-  --color-base-850: #140e01;
-  --color-base-900: #0e0801;
-  --color-base-950: #0c0904;
+  --color-base-50: #fef9f0;
+  --color-base-100: #fdfbf8;
+  --color-base-150: #fdedd1;
+  --color-base-200: #eedec5;
+  --color-base-250: #fce0b3;
+  --color-base-300: #fbdaa4;
+  --color-base-350: #fad495;
+  --color-base-400: #f9ce86;
+  --color-base-450: #f9c876;
+  --color-base-500: #eda022;
+  --color-base-550: #dc951f;
+  --color-base-600: #c98c24;
+  --color-base-650: #b87b18;
+  --color-base-700: #523810;
+  --color-base-750: #966617;
+  --color-base-800: #241d11;
+  --color-base-850: #7a5414;
+  --color-base-900: #181003;
+  --color-base-950: #54390c;
   --color-success-0: #ffffff;
   --color-success-50: #f1faf6;
   --color-success-100: #e3f5ed;
@@ -247,10 +246,6 @@
 /* Collapsible */
 .collapsible {
   border-radius: 4px;
-}
-
-.text-primary {
-  color: var(--theme-elevation-700);
 }
 
 /* Collapsible Content */

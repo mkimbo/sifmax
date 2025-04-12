@@ -10,6 +10,9 @@ import { fileURLToPath } from 'url'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { superAdmin } from '@/access/superAdmin'
+import { adminGroups } from '@/utilities/adminGroups'
+import { superAdminCollection } from '@/access/superAdminCollection'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -17,10 +20,15 @@ const dirname = path.dirname(filename)
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
-    create: authenticated,
-    delete: authenticated,
+    create: superAdmin,
+    delete: superAdmin,
     read: anyone,
-    update: authenticated,
+    update: superAdmin,
+    admin: superAdmin,
+  },
+  admin: {
+    hidden: superAdminCollection,
+    group: adminGroups.website,
   },
   fields: [
     {
