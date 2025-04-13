@@ -5,28 +5,40 @@ import React, { useEffect, useState } from 'react'
 import { CategorySelector } from '../CategorySelector'
 
 import ChooseService from '../ChooseService'
-import { Service } from '../Services'
+import { Service as TService } from '../Services'
 import { sifmaxServiceBook, sifmaxServiceCategories as categories } from '@/utilities/serviceBook'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { MultiStepBookingForm } from '../MultiStepBookingForm/MultiStepBookingForm'
+import { Service } from '@/payload-types'
 
-type Props = {}
+type Props = {
+  services: TService[]
+}
 
-function AppointmentsPageComponent({}: Props) {
+function AppointmentsPageComponent({ services }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const categoryParam = searchParams.get('category')
 
-  const services = sifmaxServiceBook.map((service) => {
-    return {
-      ...service,
-      price: 'Tsh. ' + service.price,
-      serviceId: generateKey(service.title) + generateKey(service.category),
-    }
-  })
+  // const serviceList = services.map((service) => {
+  //   return {
+  //     ...service,
+  //     title: service.name,
+  //     serviceId: service.id,
+  //   }
+  // })
+  // console.log(
+  //   sifmaxServiceBook.map((service) => {
+  //     return {
+  //       title: service.title,
+  //       price: 'Tsh. ' + service.price,
+  //       category: service.id,
+  //     }
+  //   }),
+  // )
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(categoryParam)
-  const [selectedService, setSelectedService] = useState<Service | null>(null)
+  const [selectedService, setSelectedService] = useState<TService | null>(null)
   const [showBookingForm, setShowBookingForm] = useState(false)
 
   // Update selected category when URL param changes
@@ -42,7 +54,7 @@ function AppointmentsPageComponent({}: Props) {
 
   //Filter services by category
   const filteredServices = selectedCategory
-    ? services.filter((service) => service.id === selectedCategory)
+    ? services.filter((service) => service.category === selectedCategory)
     : []
 
   // Handle category selection
@@ -51,7 +63,7 @@ function AppointmentsPageComponent({}: Props) {
   }
 
   // Handle service selection
-  const handleServiceSelect = (service: Service) => {
+  const handleServiceSelect = (service: TService) => {
     setSelectedService(service)
     setShowBookingForm(true)
   }

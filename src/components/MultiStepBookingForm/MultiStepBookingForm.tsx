@@ -19,6 +19,7 @@ import { createAppointmentSlot, getFreeSlots } from '@/utilities/actions'
 import calculateEndDateTime from '@/utilities/calculateEndDateTime'
 import { Service } from '../Services'
 import { cn } from '@/utilities/ui'
+import createAppointment from '@/utilities/createNewAppointment'
 
 // Form schema with Zod
 const formSchema = z.object({
@@ -583,36 +584,34 @@ export function MultiStepBookingForm({
   const goToPreviousStep = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 0))
   }
-
+  const BUFFER_TIME = 30 // in minutes
   const onSubmit: SubmitHandler<BookingFormValues> = async (data) => {
     setIsSubmitting(true)
 
     try {
       // Simulate API call
-      const res = await createAppointmentSlot({
-        user_name: data.name,
-        user_email: data.email,
-        user_phone: data.phone,
-        note: data.notes,
-        start_date: data.timeSlot,
-        end_date: calculateEndDateTime(data.timeSlot, 120) ?? data.timeSlot,
-        status: 'new',
-        booking_intent:
-          selectedServices[0]?.title ??
-          'Unknown Service' +
-            `(${selectedServices[0]?.category})` +
-            ' - ' +
-            selectedServices[0]?.price +
-            'for 30 mins',
+      const totalDuration = (selectedServices[0]?.duration ?? 0) + BUFFER_TIME
+      const response = await createAppointment({
+        appointmentDateTime: data.timeSlot,
+        duration: totalDuration,
+        appointmentEndTime: calculateEndDateTime(data.timeSlot, totalDuration) ?? data.timeSlot,
+        serviceIds: selectedServices.map((service) => service.id),
+        newCustomer: {
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+        },
+        notes: data.notes,
+        source: 'website',
       })
-      // await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // if (!res.success) {
-      //   throw new Error("Failed to create appointment slot.");
-      // }
+      if (response.status != 'Booked') {
+        throw new Error('Failed to create appointment slot.')
+      }
       // Store form data for success step
       setFormData(data)
       console.log('Form submitted:', data)
+      console.log(currentStep, totalSteps, response)
 
       // Move to success step
       setCurrentStep(totalSteps)
@@ -692,7 +691,7 @@ export function MultiStepBookingForm({
                 onClick={() => {
                   if (currentStep == 0) {
                     if (selectedServices.length > 0) {
-                      removeService(selectedServices[0]!.serviceId)
+                      removeService(selectedServices[0]!.id)
                     }
                   } else {
                     goToPreviousStep()
@@ -770,16 +769,16 @@ export function MultiStepBookingForm({
             {/* <h4 className="font-medium mb-3 text-sm md:text-base">Selected Service</h4> */}
             <ul className="space-y-2">
               {selectedServices.map((service) => (
-                <li key={service.serviceId} className="flex justify-between items-center">
+                <li key={service.id} className="flex justify-between items-center">
                   <div className="flex items-center text-muted-foreground text-sm md:text-base">
                     <div className="h-2 w-2 rounded-full bg-primary mr-2"></div>
-                    <span>{service.title}</span>
+                    <span>{service.name}</span>
                   </div>
                   <Button
                     size="sm"
                     variant="ghost"
                     className="w-fit"
-                    onClick={() => removeService(service.serviceId)}
+                    onClick={() => removeService(service.id)}
                     type="button"
                   >
                     <X className="h-3 w-3" />

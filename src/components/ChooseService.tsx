@@ -19,7 +19,7 @@ function ChooseService({ selectedCategory, filteredServices, handleServiceSelect
   useEffect(() => {
     const services = filteredServices.filter(
       (service) =>
-        service.title.toLowerCase().includes(query.toLowerCase()) ||
+        service.name.toLowerCase().includes(query.toLowerCase()) ||
         service.category.toLowerCase().includes(query.toLowerCase()),
     )
     // Update your state with filtered services

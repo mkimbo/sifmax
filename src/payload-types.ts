@@ -760,7 +760,9 @@ export interface Service {
   id: string;
   name: string;
   duration: number;
-  price: number;
+  category: string;
+  subCategory?: string | null;
+  price: string;
   isActive?: boolean | null;
   slug?: string | null;
   slugLock?: boolean | null;
@@ -787,10 +789,24 @@ export interface Customer {
  */
 export interface Appointment1 {
   id: string;
-  customer: string | Customer;
+  customer?: (string | null) | Customer;
+  /**
+   * Enter name only if creating a new customer.
+   */
+  newCustomerName?: string | null;
+  /**
+   * Required if creating a new customer.
+   */
+  newCustomerPhone?: string | null;
+  newCustomerEmail?: string | null;
   appointmentDateTime: string;
+  services: (string | Service)[];
   status: 'Booked' | 'Confirmed' | 'Completed' | 'Cancelled' | 'No-Show';
+  /**
+   * Any additional notes or extras for the appointment.
+   */
   notes?: string | null;
+  source?: ('admin' | 'website') | null;
   googleCalendarEventId?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1382,6 +1398,8 @@ export interface UsersSelect<T extends boolean = true> {
 export interface ServicesSelect<T extends boolean = true> {
   name?: T;
   duration?: T;
+  category?: T;
+  subCategory?: T;
   price?: T;
   isActive?: T;
   slug?: T;
@@ -1408,9 +1426,14 @@ export interface CustomersSelect<T extends boolean = true> {
  */
 export interface AppointmentsSelect<T extends boolean = true> {
   customer?: T;
+  newCustomerName?: T;
+  newCustomerPhone?: T;
+  newCustomerEmail?: T;
   appointmentDateTime?: T;
+  services?: T;
   status?: T;
   notes?: T;
+  source?: T;
   googleCalendarEventId?: T;
   updatedAt?: T;
   createdAt?: T;

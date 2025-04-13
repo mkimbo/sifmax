@@ -32,8 +32,17 @@ export const Services: CollectionConfig = {
       required: true,
     },
     {
+      name: 'category',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'subCategory',
+      type: 'text',
+    },
+    {
       name: 'price',
-      type: 'number',
+      type: 'text',
       required: true,
     },
     {

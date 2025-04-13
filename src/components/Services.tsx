@@ -149,12 +149,13 @@ export const getIcon = (name: string) => {
 
 // Service type definition
 export type Service = {
-  id: string
-  title: string
+  name: string
   price: string
   description?: string
   category: string
-  serviceId: string
+  id: string
+  subCategory?: string
+  duration: number
 }
 
 // Category information
@@ -199,8 +200,8 @@ export function ServicesSection() {
   }
   // Handle service selection/deselection
   const toggleServiceSelection = (service: Service) => {
-    if (isServiceSelected(service.serviceId)) {
-      removeService(service.serviceId)
+    if (isServiceSelected(service.id)) {
+      removeService(service.id)
     } else {
       addService(service)
       setShowBookingForm(true)
