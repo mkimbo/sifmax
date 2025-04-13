@@ -28,7 +28,7 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
   }
 
   const removeService = (serviceId: string) => {
-    setSelectedServices((prev) => prev.filter((service) => service.serviceId !== serviceId))
+    setSelectedServices((prev) => prev.filter((service) => service.id !== serviceId))
   }
 
   const clearServices = () => {
@@ -36,7 +36,7 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
   }
 
   const isServiceSelected = (serviceId: string) => {
-    return selectedServices.some((service) => service.serviceId === serviceId)
+    return selectedServices.some((service) => service.id === serviceId)
   }
 
   return (
