@@ -154,7 +154,7 @@ export type Service = {
   description?: string
   category: string
   id: string
-  subCategory?: string
+  subCategory?: string | null | undefined
   duration: number
 }
 
